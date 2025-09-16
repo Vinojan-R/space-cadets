@@ -1,51 +1,76 @@
 import { useState, useEffect } from "react";
 
-export default function MeteorCatch() {
-  const [meteors, setMeteors] = useState([]);
-  const [score, setScore] = useState(0);
+// List of space-themed cards
+const spaceCards = ["🌍", "🌙", "☀️", "⭐", "🪐", "🚀", "🛰️", "🌌"];
 
-  // Generate random meteors
+export default function SpaceMemoryGame() {
+  const [cards, setCards] = useState([]);
+  const [flipped, setFlipped] = useState([]);
+  const [matched, setMatched] = useState([]);
+  const [moves, setMoves] = useState(0);
+
+  // Shuffle and start game
+  const startGame = () => {
+    const shuffled = [...spaceCards, ...spaceCards]
+      .sort(() => Math.random() - 0.5)
+      .map((card, index) => ({ id: index, value: card }));
+    setCards(shuffled);
+    setFlipped([]);
+    setMatched([]);
+    setMoves(0);
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setMeteors((prevMeteors) => [
-        ...prevMeteors,
-        {
-          id: Date.now(),
-          x: Math.random() * 90 + 5, // Random position (5% to 95%)
-          y: Math.random() * 80 + 10, // Random position (10% to 90%)
-        },
-      ]);
-    }, 1000); // Add a new meteor every second
-
-    return () => clearInterval(interval);
+    startGame();
   }, []);
 
-  // Remove a meteor when clicked
-  const catchMeteor = (id) => {
-    setMeteors((prevMeteors) => prevMeteors.filter((meteor) => meteor.id !== id));
-    setScore((prevScore) => prevScore + 1);
+  // Handle card click
+  const handleFlip = (id) => {
+    if (flipped.length === 2 || flipped.includes(id) || matched.includes(id)) return;
+
+    const newFlipped = [...flipped, id];
+    setFlipped(newFlipped);
+
+    if (newFlipped.length === 2) {
+      setMoves(moves + 1);
+      const [first, second] = newFlipped.map(
+        (flipId) => cards.find((c) => c.id === flipId)
+      );
+
+      if (first.value === second.value) {
+        setMatched([...matched, first.id, second.id]);
+      }
+
+      setTimeout(() => setFlipped([]), 800);
+    }
   };
 
   return (
-    <div className="relative w-full h-full text-center">
-      <h2 className="text-2xl font-bold mb-4">☄️ Meteor Catch</h2>
-      <p className="mb-4">Catch the meteors before they hit the ground!</p>
-      <div className="relative w-full h-96 bg-black rounded-lg overflow-hidden border-4 border-red-500">
-        {meteors.map((meteor) => (
-          <div
-            key={meteor.id}
-            className="absolute w-6 h-6 bg-red-400 rounded-full shadow-lg cursor-pointer hover:scale-125 transition-transform"
-            style={{
-              left: `${meteor.x}%`,
-              top: `${meteor.y}%`,
-            }}
-            onClick={() => catchMeteor(meteor.id)}
-          ></div>
-        ))}
+    <div className="flex flex-col items-center p-6">
+      <h1 className="text-3xl font-bold mb-4">🚀 Space Memory Game</h1>
+      <p className="mb-4">Moves: {moves}</p>
+      <div className="grid grid-cols-4 gap-4">
+        {cards.map((card) => {
+          const isFlipped = flipped.includes(card.id) || matched.includes(card.id);
+          return (
+            <div
+              key={card.id}
+              onClick={() => handleFlip(card.id)}
+              className={`w-20 h-20 flex items-center justify-center text-3xl cursor-pointer rounded-xl shadow-md 
+                ${isFlipped ? "bg-indigo-600 text-white" : "bg-gray-800 text-transparent"}
+              `}
+            >
+              {isFlipped ? card.value : "?"}
+            </div>
+          );
+        })}
       </div>
-      <div className="mt-4">
-        <h3 className="text-xl font-bold">Score: {score}</h3>
-      </div>
+      <button
+        onClick={startGame}
+        className="mt-6 px-4 py-2 bg-green-600 text-white rounded-xl shadow hover:bg-green-700"
+      >
+        🔄 Restart Game
+      </button>
     </div>
   );
 }
