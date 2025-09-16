@@ -2,6 +2,7 @@ import { useState } from "react";
 import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SearchBar from "../components/SearchBar"; // Import SearchBar component
 
 const technologies = [
 	{
@@ -180,7 +181,8 @@ export default function NewTechnologiesPage() {
 	return (
 		<div className="min-h-screen flex flex-col text-white relative">
 			<SpaceBackground />
-			<Header />
+			<Header activePage="newtechnologies" />
+			<SearchBar data={technologies} /> {/* Added SearchBar */}
 			<main className="flex-grow flex flex-col items-center justify-center p-4">
 				<h1 className="text-4xl font-bold mb-6 text-blue-300 text-center">
 					🚀 New Space Technologies!

@@ -1,7 +1,8 @@
 import { useState } from "react";
+import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SpaceBackground from "../components/SpaceBackground";
+import SearchBar from "../components/SearchBar";
 
 const planets = [
   {
@@ -70,7 +71,8 @@ export default function OtherPlanetsPage() {
   return (
     <div className="min-h-screen flex flex-col text-white relative">
       <SpaceBackground />
-      <Header />
+      <Header activePage="otherplanets" />
+      <SearchBar data={planets} />
       <main className="flex-grow flex flex-col items-center justify-center p-6">
         <h1 className="text-4xl font-bold mb-6 text-yellow-300">Planets</h1>
         <div className="relative w-full h-[500px] flex items-center justify-center">

@@ -1,7 +1,14 @@
 import { useState } from "react";
+import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SpaceBackground from "../components/SpaceBackground";
+import SearchBar from "../components/SearchBar";
+
+const universeFacts = [
+  { name: "Milky Way", img: "/src/assets/logo.png", description: "Our home galaxy! It looks like a giant spiral and has billions of stars." },
+  { name: "Andromeda", img: "/src/assets/logo.png", description: "The closest big galaxy to us. One day, it will merge with the Milky Way!" },
+  { name: "Triangulum", img: "/src/assets/logo.png", description: "A small spiral galaxy near Andromeda. It has lots of young, bright stars." },
+];
 
 const universeQuizQuestions = [
   { question: "What is space?", options: ["A planet", "A star", "An infinite expanse", "A galaxy"], correct: "An infinite expanse" },
@@ -10,15 +17,13 @@ const universeQuizQuestions = [
   { question: "What tool is used to observe distant stars?", options: ["Satellite", "Telescope", "Rocket", "Space Suit"], correct: "Telescope" },
   { question: "Which mission landed humans on the Moon?", options: ["Apollo 11", "Voyager", "Hubble", "Perseverance"], correct: "Apollo 11" },
   { question: "What is the largest type of celestial object in space?", options: ["Planet", "Star", "Galaxy", "Asteroid"], correct: "Galaxy" },
-  { question: "What is the name of the force that keeps planets in orbit?", options: ["Gravity", "Magnetism", "Electricity", "Friction"], correct: "Gravity" },
-  { question: "What is the name of the first mission to explore outer planets?", options: ["Voyager", "Apollo", "Hubble", "Perseverance"], correct: "Voyager" },
   { question: "What is the name of the galaxy we live in?", options: ["Andromeda", "Milky Way", "Triangulum", "Sombrero"], correct: "Milky Way" },
   { question: "What is the name of the telescope that looks deep into space?", options: ["Hubble", "Voyager", "Apollo", "Perseverance"], correct: "Hubble" },
   { question: "What is the shape of the Milky Way galaxy?", options: ["Spiral", "Oval", "Sphere", "Flat"], correct: "Spiral" },
   { question: "What is the name of the galaxy closest to the Milky Way?", options: ["Andromeda", "Triangulum", "Sombrero", "Whirlpool"], correct: "Andromeda" },
   { question: "What is the name of the galaxy famous for its swirling arms?", options: ["Whirlpool", "Sombrero", "Triangulum", "Milky Way"], correct: "Whirlpool" },
   { question: "What is the name of the galaxy that looks like a hat?", options: ["Sombrero", "Whirlpool", "Triangulum", "Milky Way"], correct: "Sombrero" },
-  { question: "What is the name of the galaxy with lots of young, bright stars?", options: ["Triangulum", "Andromeda", "Sombrero", "Whirlpool"], correct: "Triangulum" }
+  { question: "What is the name of the galaxy with lots of young, bright stars?", options: ["Triangulum", "Andromeda", "Sombrero", "Whirlpool"], correct: "Triangulum" },
 ];
 
 export default function UniversePage() {
@@ -44,7 +49,8 @@ export default function UniversePage() {
   return (
     <div className="min-h-screen flex flex-col text-white relative">
       <SpaceBackground />
-      <Header />
+      <Header activePage="universe" />
+      <SearchBar data={universeFacts} />
       <main className="flex-grow flex flex-col items-center justify-center p-4">
         <h1 className="text-4xl font-bold mb-4 text-blue-300">Explore the Universe!</h1>
         <p className="text-lg mb-6 text-center">
@@ -60,7 +66,13 @@ export default function UniversePage() {
         </div>
         {showQuiz && (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-            <div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md">
+            <div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md relative">
+              <button
+                className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                onClick={() => setShowQuiz(false)}
+              >
+                ✖
+              </button>
               <h2 className="text-xl font-bold mb-4">Quiz Time!</h2>
               <p className="text-lg mb-4">{universeQuizQuestions[currentQuestion].question}</p>
               <div className="grid grid-cols-1 gap-4">

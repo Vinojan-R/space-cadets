@@ -2,6 +2,7 @@ import { useState } from "react";
 import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SearchBar from "../components/SearchBar";
 
 const constellations = [
   {
@@ -100,7 +101,8 @@ export default function StarConstellationPage() {
   return (
     <div className="min-h-screen flex flex-col text-white relative">
       <SpaceBackground />
-      <Header />
+      <Header activePage="starconstellation" />
+      <SearchBar data={constellations} />
       <main className="flex-grow flex flex-col items-center justify-center p-4">
         <h1 className="text-4xl font-bold mb-6 text-indigo-300 text-center">
           ✨ Star Constellations!
