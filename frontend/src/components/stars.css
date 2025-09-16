@@ -1,0 +1,15 @@
+.stars {
+  width: 100%;
+  height: 100%;
+  background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+  animation: moveStars 60s linear infinite;
+}
+
+@keyframes moveStars {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 10000px 10000px;
+  }
+}
