@@ -45,9 +45,9 @@ export default function GalaxyBackground() {
         className="absolute bottom-10 left-10 w-32 animate-float"
       />
       <img
-        src="https://i.ibb.co/4YfYj1r/cartoon-planet.png" // Sample cartoon planet
+        src="https://static.vecteezy.com/system/resources/previews/046/346/878/original/cartoon-female-astronaut-floating-free-png.png" // Sample cartoon planet
         alt="Cartoon Planet with rings"
-        className="absolute top-20 right-20 w-40 animate-bounce"
+        className="absolute top-20 right-20 w-70 animate-bounce"
       />
       <img
         src="https://i.ibb.co/3h8h9qk/cartoon-alien.png" // Sample cartoon alien
@@ -55,14 +55,14 @@ export default function GalaxyBackground() {
         className="absolute bottom-20 right-1/3 w-28 animate-float"
       />
       <img
-        src="https://via.placeholder.com/100x100.png?text=UFO" // Placeholder UFO image
+        src="/src/assets/giphy.gif" // Placeholder UFO image
         alt="Cartoon UFO flying across the screen"
-        className="absolute top-1/2 left-1/4 w-24 animate-float"
+        className="absolute top-1/2 left-1/4 w-60 animate-float"
       />
       <img
-        src="https://via.placeholder.com/100x100.png?text=Rocket" // Placeholder Rocket image
+        src="/src/assets/sat.png" // Placeholder Rocket image
         alt="Cartoon Rocket flying upwards"
-        className="absolute bottom-1/4 left-1/2 w-28 animate-bounce"
+        className="absolute bottom-1/4 left-1/2 w-45 animate-bounce"
       />
 
       {/* TailwindCSS Animations */}
