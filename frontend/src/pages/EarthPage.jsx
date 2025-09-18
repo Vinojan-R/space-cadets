@@ -120,31 +120,38 @@ const quizQuestions = [
 ];
 
 export default function EarthPage() {
-	const [selected, setSelected] = useState(null);
+	const [selectedAnswer, setSelectedAnswer] = useState(null);
 	const [showQuiz, setShowQuiz] = useState(false);
 	const [score, setScore] = useState(0);
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showBadge, setShowBadge] = useState(false);
+	const [showScore, setShowScore] = useState(false);
 
 	const handleAnswer = (answer) => {
+		setSelectedAnswer(answer);
 		if (answer === quizQuestions[currentQuestion].correct) {
 			setScore(score + 1);
 		}
-		if (currentQuestion < quizQuestions.length - 1) {
-			setCurrentQuestion(currentQuestion + 1);
-		} else {
-			if (score + 1 >= 12) {
-				setShowBadge(true);
+		setTimeout(() => {
+			if (currentQuestion < quizQuestions.length - 1) {
+				setCurrentQuestion(currentQuestion + 1);
+				setSelectedAnswer(null);
+			} else {
+				if (score + 1 >= 12) {
+					setShowBadge(true);
+				} else {
+					setShowScore(true);
+				}
+				setShowQuiz(false);
 			}
-			setShowQuiz(false);
-		}
+		}, 1000); // Delay to show feedback
 	};
 
 	return (
 		<div className="min-h-screen flex flex-col text-white relative">
 			<SpaceBackground />
 			<Header />
-			<SearchBar data={facts} /> {/* Added SearchBar component */}
+			<SearchBar data={facts} />
 			<main className="flex-grow flex flex-col items-center justify-center p-4">
 				<h1 className="text-4xl font-bold mb-4 text-green-300">
 					Welcome to Planet Earth!
@@ -154,40 +161,6 @@ export default function EarthPage() {
 					alt="Earth"
 					className="w-40 h-40 rounded-full shadow-lg mb-6 border-4 border-blue-400"
 				/>
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-					{facts.map((fact, idx) => (
-						<button
-							key={idx}
-							className={`bg-green-900/80 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center hover:bg-green-700 transition-colors border-2 border-green-400 ${
-								selected === idx ? "ring-4 ring-green-300" : ""
-							}`}
-							onClick={() => setSelected(selected === idx ? null : idx)}
-						>
-							<span className="text-xl font-bold mb-2">{fact.question}</span>
-							{selected === idx && (
-								<span className="text-lg mt-2 text-green-200">
-									{fact.answer}
-								</span>
-							)}
-						</button>
-					))}
-				</div>
-				<div className="mt-8 text-center">
-					<h2 className="text-2xl font-bold text-blue-300 mb-2">
-						🌱 Fun Activity!
-					</h2>
-					<p className="text-lg mb-4">
-						Can you name all the continents and oceans on Earth?
-					</p>
-					<button
-						className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
-						onClick={() =>
-							alert("Great job! Keep exploring Earth!")
-						}
-					>
-						I Did It!
-					</button>
-				</div>
 				<div className="mt-8 text-center">
 					<button
 						className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
@@ -213,7 +186,13 @@ export default function EarthPage() {
 								{quizQuestions[currentQuestion].options.map((option, idx) => (
 									<button
 										key={idx}
-										className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600"
+										className={`px-4 py-2 rounded ${
+											selectedAnswer === option
+												? option === quizQuestions[currentQuestion].correct
+													? "bg-green-500 border-4 border-green-700"
+													: "bg-red-500 border-4 border-red-700"
+												: "bg-blue-500 hover:bg-blue-600"
+										}`}
 										onClick={() => handleAnswer(option)}
 									>
 										{option}
@@ -228,7 +207,7 @@ export default function EarthPage() {
 						<div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
 							<h2 className="text-xl font-bold mb-4">🎉 Congratulations!</h2>
 							<p className="text-lg mb-4">
-								You earned a badge for scoring more than 12 correct answers!
+								You earned a badge for scoring {score}/15 correct answers!
 							</p>
 							<img
 								src="/src/assets/logo.png"
@@ -238,6 +217,24 @@ export default function EarthPage() {
 							<button
 								className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
 								onClick={() => setShowBadge(false)}
+							>
+								Close
+							</button>
+						</div>
+					</div>
+				)}
+				{showScore && (
+					<div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+						<div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
+							<h2 className="text-xl font-bold mb-4">
+								Your Score: {score}/15
+							</h2>
+							<p className="text-lg mb-4">
+								Try again next time to earn the badge!
+							</p>
+							<button
+								className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
+								onClick={() => setShowScore(false)}
 							>
 								Close
 							</button>

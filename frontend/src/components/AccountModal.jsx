@@ -179,114 +179,136 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
       )}
 
       {/* Settings popup */}
-      {showSettings && (
-        <div className="fixed top-4 right-4 z-50">
-          <div className="bg-gray-800 text-white rounded-xl p-6 w-96 relative">
-            <button
-              onClick={() => setShowSettings(false)}
-              className="absolute top-2 right-2 text-gray-400 hover:text-white"
-            >
-              ✖
-            </button>
-            <h2 className="text-xl font-bold mb-4">⚙️ Settings</h2>
+{showSettings && (
+  <div className="fixed top-4 right-4 z-50">
+    <div className="bg-gray-900 text-white rounded-2xl shadow-xl p-6 w-[420px] relative">
+      {/* Close Button */}
+      <button
+        onClick={() => setShowSettings(false)}
+        className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl"
+      >
+        ✖
+      </button>
 
-            {/* Username */}
-            <div className="mb-3">
-              <label className="block text-sm mb-1">Change Username</label>
-              <input
-                type="text"
-                className="w-full p-2 rounded bg-gray-700 border border-gray-600"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-indigo-500 px-4 py-2 rounded hover:bg-indigo-600"
-                onClick={updateUsername}
-              >
-                Update Username
-              </button>
-            </div>
+      {/* Header */}
+      <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+        ⚙️ Settings
+      </h2>
 
-            {/* Password */}
-            <div className="mb-3">
-              <label className="block text-sm mb-1">Change Password</label>
-              <input
-                type="password"
-                className="w-full p-2 rounded bg-gray-700 border border-gray-600"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-blue-500 px-4 py-2 rounded hover:bg-blue-600"
-                onClick={updatePassword}
-              >
-                Update Password
-              </button>
-            </div>
-
-            {/* Profile picture */}
-            <div className="mb-3">
-              <label className="block text-sm mb-1">Profile Picture URL</label>
-              <input
-                type="text"
-                className="w-full p-2 rounded bg-gray-700 border border-gray-600"
-                value={profilePicture}
-                onChange={(e) => setProfilePicture(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-purple-500 px-4 py-2 rounded hover:bg-purple-600"
-                onClick={updateProfilePicture}
-              >
-                Update Picture
-              </button>
-            </div>
-
-            {/* Learning reminders */}
-            <div className="mb-3">
-              <label className="block text-sm mb-1">Learning Reminders</label>
-              <input
-                type="text"
-                className="w-full p-2 rounded bg-gray-700 border border-gray-600"
-                value={reminders}
-                onChange={(e) => setReminders(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-green-500 px-4 py-2 rounded hover:bg-green-600"
-                onClick={updateReminders}
-              >
-                Save Reminders
-              </button>
-            </div>
-
-            {/* Login activity */}
-            <div className="mb-3">
-              <button
-                className="w-full bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-600"
-                onClick={fetchLoginActivity}
-              >
-                Show Login Activity
-              </button>
-              {loginActivity.length > 0 && (
-                <ul className="mt-2 space-y-1 max-h-32 overflow-y-auto text-sm bg-gray-700 p-2 rounded">
-                  {loginActivity.map((log, index) => (
-                    <li key={index}>📍 {log}</li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            {/* Delete account */}
-            <div className="mt-4">
-              <button
-                className="w-full bg-red-500 px-4 py-2 rounded hover:bg-red-600"
-                onClick={deleteAccount}
-              >
-                Delete Account
-              </button>
-            </div>
-          </div>
+      {/* Profile Section */}
+      <div className="flex items-center gap-4 mb-6">
+        <img
+          src={profilePicture || "https://via.placeholder.com/80"}
+          alt="Profile"
+          className="w-16 h-16 rounded-full border-2 border-gray-600 object-cover"
+        />
+        <div>
+          <p className="font-bold text-lg">{username}</p>
+          <p className="text-sm text-gray-400">User ID: {userId}</p>
         </div>
-      )}
+      </div>
+
+      {/* Username */}
+      <div className="mb-5">
+        <label className="block text-sm mb-1 font-medium">👤 Change Username</label>
+        <input
+          type="text"
+          className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-indigo-500 outline-none"
+          value={newUsername}
+          onChange={(e) => setNewUsername(e.target.value)}
+        />
+        <button
+          className="mt-2 w-full bg-indigo-500 px-4 py-2 rounded font-bold hover:bg-indigo-600"
+          onClick={updateUsername}
+        >
+          Update Username
+        </button>
+      </div>
+
+      {/* Password */}
+      <div className="mb-5">
+        <label className="block text-sm mb-1 font-medium">🔑 Change Password</label>
+        <input
+          type="password"
+          className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-blue-500 outline-none"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+        <button
+          className="mt-2 w-full bg-blue-500 px-4 py-2 rounded font-bold hover:bg-blue-600"
+          onClick={updatePassword}
+        >
+          Update Password
+        </button>
+      </div>
+
+      {/* Profile Picture */}
+      <div className="mb-5">
+        <label className="block text-sm mb-1 font-medium">🖼️ Profile Picture URL</label>
+        <input
+          type="text"
+          className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-purple-500 outline-none"
+          value={profilePicture}
+          onChange={(e) => setProfilePicture(e.target.value)}
+        />
+        <button
+          className="mt-2 w-full bg-purple-500 px-4 py-2 rounded font-bold hover:bg-purple-600"
+          onClick={updateProfilePicture}
+        >
+          Update Picture
+        </button>
+      </div>
+
+      {/* Learning Reminders */}
+      <div className="mb-5">
+        <label className="block text-sm mb-1 font-medium">📅 Learning Reminders</label>
+        <input
+          type="text"
+          className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-green-500 outline-none"
+          value={reminders}
+          onChange={(e) => setReminders(e.target.value)}
+        />
+        <button
+          className="mt-2 w-full bg-green-500 px-4 py-2 rounded font-bold hover:bg-green-600"
+          onClick={updateReminders}
+        >
+          Save Reminders
+        </button>
+      </div>
+
+      {/* Login Activity */}
+      <div className="mb-6">
+        <button
+          className="w-full bg-yellow-500 px-4 py-2 rounded font-bold hover:bg-yellow-600"
+          onClick={fetchLoginActivity}
+        >
+          Show Login Activity
+        </button>
+        {loginActivity.length > 0 && (
+          <ul className="mt-3 space-y-2 max-h-32 overflow-y-auto text-sm bg-gray-800 p-3 rounded border border-gray-700">
+            {loginActivity.map((log, index) => (
+              <li key={index} className="flex items-center gap-2">
+                🛰️ <span>{log}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Danger Zone */}
+      <div className="border-t border-gray-700 pt-4">
+        <h3 className="text-red-400 font-bold mb-2">⚠️ Danger Zone</h3>
+        <button
+          className="w-full bg-red-500 px-4 py-2 rounded font-bold hover:bg-red-600"
+          onClick={deleteAccount}
+        >
+          Delete Account
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

@@ -15,6 +15,16 @@ const sunQuizQuestions = [
   { question: "What is the Sun made of?", options: ["Hydrogen and helium", "Oxygen and nitrogen", "Carbon and iron", "Water and air"], correct: "Hydrogen and helium" },
   { question: "What is the process happening in the Sun?", options: ["Nuclear fusion", "Combustion", "Evaporation", "Condensation"], correct: "Nuclear fusion" },
   { question: "What is the Sun's position in the solar system?", options: ["Center", "Edge", "Above Earth", "Below Earth"], correct: "Center" },
+  { question: "How long does it take for sunlight to reach Earth?", options: ["8 minutes", "1 hour", "24 hours", "1 second"], correct: "8 minutes" },
+  { question: "What is the Sun's surface temperature?", options: ["5,500°C", "1,000°C", "10,000°C", "100°C"], correct: "5,500°C" },
+  { question: "What is the Sun's core temperature?", options: ["15 million°C", "1 million°C", "100,000°C", "10,000°C"], correct: "15 million°C" },
+  { question: "What is the Sun's diameter?", options: ["1.39 million km", "100,000 km", "500,000 km", "10 million km"], correct: "1.39 million km" },
+  { question: "What is the Sun's age?", options: ["4.6 billion years", "1 billion years", "10 billion years", "100 million years"], correct: "4.6 billion years" },
+  { question: "What is the Sun's primary source of energy?", options: ["Nuclear fusion", "Combustion", "Solar wind", "Magnetism"], correct: "Nuclear fusion" },
+  { question: "What is the Sun's outermost layer called?", options: ["Corona", "Photosphere", "Chromosphere", "Core"], correct: "Corona" },
+  { question: "What are sunspots?", options: ["Cooler areas on the Sun", "Hotter areas on the Sun", "Storms on the Sun", "Magnetic fields"], correct: "Cooler areas on the Sun" },
+  { question: "What is a solar flare?", options: ["A burst of energy from the Sun", "A sunspot", "A solar eclipse", "A magnetic storm"], correct: "A burst of energy from the Sun" },
+  { question: "What is the Sun's gravitational pull responsible for?", options: ["Keeping planets in orbit", "Creating tides", "Causing eclipses", "All of the above"], correct: "Keeping planets in orbit" },
 ];
 
 export default function SunPage() {
@@ -22,19 +32,27 @@ export default function SunPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showBadge, setShowBadge] = useState(false);
+  const [showScore, setShowScore] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const handleAnswer = (answer) => {
+    setSelectedAnswer(answer);
     if (answer === sunQuizQuestions[currentQuestion].correct) {
       setScore(score + 1);
     }
-    if (currentQuestion < sunQuizQuestions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      if (score + 1 >= 12) {
-        setShowBadge(true);
+    setTimeout(() => {
+      if (currentQuestion < sunQuizQuestions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedAnswer(null);
+      } else {
+        if (score + 1 >= 12) {
+          setShowBadge(true);
+        } else {
+          setShowScore(true);
+        }
+        setShowQuiz(false);
       }
-      setShowQuiz(false);
-    }
+    }, 1000); // Delay to show feedback
   };
 
   return (
@@ -71,7 +89,13 @@ export default function SunPage() {
                 {sunQuizQuestions[currentQuestion].options.map((option, idx) => (
                   <button
                     key={idx}
-                    className="bg-yellow-500 px-4 py-2 rounded hover:bg-yellow-600"
+                    className={`px-4 py-2 rounded ${
+                      selectedAnswer === option
+                        ? option === sunQuizQuestions[currentQuestion].correct
+                          ? "bg-green-500 border-4 border-green-700"
+                          : "bg-red-500 border-4 border-red-700"
+                        : "bg-yellow-500 hover:bg-yellow-600"
+                    }`}
                     onClick={() => handleAnswer(option)}
                   >
                     {option}
@@ -85,7 +109,7 @@ export default function SunPage() {
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
             <div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
               <h2 className="text-xl font-bold mb-4">🎉 Congratulations!</h2>
-              <p className="text-lg mb-4">You earned a badge for scoring more than 12 correct answers!</p>
+              <p className="text-lg mb-4">You earned a badge for scoring {score}/15 correct answers!</p>
               <img
                 src="/src/assets/logo.png"
                 alt="Badge"
@@ -94,6 +118,20 @@ export default function SunPage() {
               <button
                 className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
                 onClick={() => setShowBadge(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+        {showScore && (
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+            <div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
+              <h2 className="text-xl font-bold mb-4">Your Score: {score}/15</h2>
+              <p className="text-lg mb-4">Try again next time to earn the badge!</p>
+              <button
+                className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
+                onClick={() => setShowScore(false)}
               >
                 Close
               </button>

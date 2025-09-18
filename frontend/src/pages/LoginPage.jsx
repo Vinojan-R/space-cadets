@@ -1,6 +1,7 @@
 // src/pages/LoginPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import GalaxyBackground from "../components/GalaxyBackground"; // Import GalaxyBackground
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
@@ -30,34 +31,45 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-black text-white">
-      <form onSubmit={handleLogin} className="bg-gray-900 p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
-        {error && <p className="text-red-500">{error}</p>}
+    <div className="relative min-h-screen bg-gray-900 text-white">
+      {/* Galaxy Background */}
+      <GalaxyBackground />
 
-        <input
-          type="text"
-          placeholder="Username"
-          className="w-full p-2 mb-3 rounded bg-gray-800"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+      {/* Login Form */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen">
+        <form onSubmit={handleLogin} className="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+          <h2 className="text-3xl font-bold mb-6 text-center">Login</h2>
+          {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 mb-3 rounded bg-gray-800"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Username"
+              className="w-full p-3 rounded bg-gray-700 focus:bg-gray-600 transition duration-200"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-6">
+            <input
+              type="password"
+              placeholder="Password"
+              className="w-full p-3 rounded bg-gray-700 focus:bg-gray-600 transition duration-200"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-500 hover:bg-blue-600 p-2 rounded"
-        >
-          Login
-        </button>
-      </form>
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-500 p-3 rounded transition duration-200"
+          >
+            Login
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

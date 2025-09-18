@@ -2,7 +2,7 @@ import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
-import SearchBar from "../components/SearchBar"; // Import SearchBar component
+import SearchBar from "../components/SearchBar";
 
 const moonFacts = [
 	{
@@ -100,34 +100,66 @@ const quizQuestions = [
 		options: ["The Sun", "The Moon", "Earth's rotation", "Wind"],
 		correct: "The Moon",
 	},
+	{
+		question: "What is the Moon's diameter?",
+		options: ["3,474 km", "5,000 km", "1,000 km", "10,000 km"],
+		correct: "3,474 km",
+	},
+	{
+		question: "What is the Moon's temperature during the day?",
+		options: ["100°C", "200°C", "127°C", "50°C"],
+		correct: "127°C",
+	},
+	{
+		question: "What is the Moon's temperature at night?",
+		options: ["-100°C", "-200°C", "-173°C", "-50°C"],
+		correct: "-173°C",
+	},
+	{
+		question: "How long does it take for the Moon to orbit Earth?",
+		options: ["27.3 days", "30 days", "15 days", "10 days"],
+		correct: "27.3 days",
+	},
+	{
+		question: "What is the Moon's core made of?",
+		options: ["Iron", "Rock", "Gas", "Water"],
+		correct: "Iron",
+	},
 ];
 
 export default function MoonPage() {
-	const [selected, setSelected] = useState(null);
 	const [showQuiz, setShowQuiz] = useState(false);
 	const [score, setScore] = useState(0);
 	const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showBadge, setShowBadge] = useState(false);
+	const [showScore, setShowScore] = useState(false);
+	const [selectedAnswer, setSelectedAnswer] = useState(null);
 
 	const handleAnswer = (answer) => {
+		setSelectedAnswer(answer);
 		if (answer === quizQuestions[currentQuestion].correct) {
 			setScore(score + 1);
 		}
-		if (currentQuestion < quizQuestions.length - 1) {
-			setCurrentQuestion(currentQuestion + 1);
-		} else {
-			if (score + 1 >= 12) {
-				setShowBadge(true);
+		setTimeout(() => {
+			if (currentQuestion < quizQuestions.length - 1) {
+				setCurrentQuestion(currentQuestion + 1);
+				setSelectedAnswer(null);
+			} else {
+				if (score >= 12) {
+					setShowBadge(true);
+				} else {
+					setShowScore(true);
+				}
+				setShowQuiz(false);
 			}
-			setShowQuiz(false);
-		}
+		}, 1000); // Delay to show feedback
 	};
 
 	return (
 		<div className="min-h-screen flex flex-col text-white relative">
 			<SpaceBackground />
 			<Header activePage="moon" />
-			<SearchBar data={moonFacts} /> {/* Added SearchBar */}
+			<SearchBar data={moonFacts} />
 			<main className="flex-grow flex flex-col items-center justify-center p-4">
 				<h1 className="text-4xl font-bold mb-4 text-yellow-300">
 					Welcome to the Moon!
@@ -137,38 +169,6 @@ export default function MoonPage() {
 					alt="Moon"
 					className="w-40 h-40 rounded-full shadow-lg mb-6 border-4 border-yellow-400"
 				/>
-				<div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-					{moonFacts.map((fact, idx) => (
-						<button
-							key={idx}
-							className={`bg-yellow-900/80 rounded-xl shadow-lg p-6 flex flex-col items-center justify-center hover:bg-yellow-700 transition-colors border-2 border-yellow-400 ${
-								selected === idx ? "ring-4 ring-yellow-300" : ""
-							}`}
-							onClick={() => setSelected(selected === idx ? null : idx)}
-						>
-							<span className="text-xl font-bold mb-2">{fact.name}</span>
-							{selected === idx && (
-								<span className="text-lg mt-2 text-yellow-200">
-									{fact.description}
-								</span>
-							)}
-						</button>
-					))}
-				</div>
-				<div className="mt-8 text-center">
-					<h2 className="text-2xl font-bold text-blue-300 mb-2">
-						🌕 Fun Challenge!
-					</h2>
-					<p className="text-lg mb-4">
-						Can you spot the Moon in the sky tonight?
-					</p>
-					<button
-						className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
-						onClick={() => alert("Awesome! Keep looking up!")}
-					>
-						I Saw The Moon!
-					</button>
-				</div>
 				<div className="mt-8 text-center">
 					<button
 						className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
@@ -194,7 +194,13 @@ export default function MoonPage() {
 								{quizQuestions[currentQuestion].options.map((option, idx) => (
 									<button
 										key={idx}
-										className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600"
+										className={`px-4 py-2 rounded ${
+											selectedAnswer === option
+												? option === quizQuestions[currentQuestion].correct
+													? "bg-green-500 border-4 border-green-700"
+													: "bg-red-500 border-4 border-red-700"
+												: "bg-blue-500 hover:bg-blue-600"
+										}`}
 										onClick={() => handleAnswer(option)}
 									>
 										{option}
@@ -209,7 +215,7 @@ export default function MoonPage() {
 						<div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
 							<h2 className="text-xl font-bold mb-4">🎉 Congratulations!</h2>
 							<p className="text-lg mb-4">
-								You earned a badge for scoring more than 12 correct answers!
+								You earned a badge for scoring {score}/15 correct answers!
 							</p>
 							<img
 								src="/src/assets/logo.png"
@@ -219,6 +225,24 @@ export default function MoonPage() {
 							<button
 								className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
 								onClick={() => setShowBadge(false)}
+							>
+								Close
+							</button>
+						</div>
+					</div>
+				)}
+				{showScore && (
+					<div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+						<div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
+							<h2 className="text-xl font-bold mb-4">
+								Your Score: {score}/15
+							</h2>
+							<p className="text-lg mb-4">
+								Try again next time to earn the badge!
+							</p>
+							<button
+								className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
+								onClick={() => setShowScore(false)}
 							>
 								Close
 							</button>
