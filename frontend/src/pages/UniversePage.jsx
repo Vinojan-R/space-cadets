@@ -24,6 +24,8 @@ const universeQuizQuestions = [
   { question: "What is the name of the galaxy famous for its swirling arms?", options: ["Whirlpool", "Sombrero", "Triangulum", "Milky Way"], correct: "Whirlpool" },
   { question: "What is the name of the galaxy that looks like a hat?", options: ["Sombrero", "Whirlpool", "Triangulum", "Milky Way"], correct: "Sombrero" },
   { question: "What is the name of the galaxy with lots of young, bright stars?", options: ["Triangulum", "Andromeda", "Sombrero", "Whirlpool"], correct: "Triangulum" },
+  { question: "What is the speed of light in a vacuum?", options: ["300,000 km/s", "150,000 km/s", "1,000 km/s", "500,000 km/s"], correct: "300,000 km/s" },
+  { question: "What is the Big Bang?", options: ["The origin of the universe", "A galaxy", "A star explosion", "A black hole"], correct: "The origin of the universe" },
 ];
 
 export default function UniversePage() {
@@ -31,19 +33,27 @@ export default function UniversePage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showBadge, setShowBadge] = useState(false);
+  const [showScore, setShowScore] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const handleAnswer = (answer) => {
+    setSelectedAnswer(answer);
     if (answer === universeQuizQuestions[currentQuestion].correct) {
       setScore(score + 1);
     }
-    if (currentQuestion < universeQuizQuestions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-    } else {
-      if (score + 1 >= 12) {
-        setShowBadge(true);
+    setTimeout(() => {
+      if (currentQuestion < universeQuizQuestions.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedAnswer(null);
+      } else {
+        if (score + 1 >= 12) {
+          setShowBadge(true);
+        } else {
+          setShowScore(true);
+        }
+        setShowQuiz(false);
       }
-      setShowQuiz(false);
-    }
+    }, 1000); // Delay to show feedback
   };
 
   return (
@@ -79,7 +89,13 @@ export default function UniversePage() {
                 {universeQuizQuestions[currentQuestion].options.map((option, idx) => (
                   <button
                     key={idx}
-                    className="bg-blue-500 px-4 py-2 rounded hover:bg-blue-600"
+                    className={`px-4 py-2 rounded ${
+                      selectedAnswer === option
+                        ? option === universeQuizQuestions[currentQuestion].correct
+                          ? "bg-green-500 border-4 border-green-700"
+                          : "bg-red-500 border-4 border-red-700"
+                        : "bg-blue-500 hover:bg-blue-600"
+                    }`}
                     onClick={() => handleAnswer(option)}
                   >
                     {option}
@@ -93,7 +109,7 @@ export default function UniversePage() {
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
             <div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
               <h2 className="text-xl font-bold mb-4">🎉 Congratulations!</h2>
-              <p className="text-lg mb-4">You earned a badge for scoring more than 12 correct answers!</p>
+              <p className="text-lg mb-4">You earned a badge for scoring {score}/15 correct answers!</p>
               <img
                 src="/src/assets/logo.png"
                 alt="Badge"
@@ -102,6 +118,20 @@ export default function UniversePage() {
               <button
                 className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
                 onClick={() => setShowBadge(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+        {showScore && (
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+            <div className="bg-gray-800 text-white rounded-xl p-6 w-full max-w-md text-center">
+              <h2 className="text-xl font-bold mb-4">Your Score: {score}/15</h2>
+              <p className="text-lg mb-4">Try again next time to earn the badge!</p>
+              <button
+                className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
+                onClick={() => setShowScore(false)}
               >
                 Close
               </button>
