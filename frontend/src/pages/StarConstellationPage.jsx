@@ -3,165 +3,6 @@ import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const constellations = [
-  {
-    name: "Aries",
-    fact: `
-      🌌 Represents: A ram (🐏)
-      ✨ Name: 'Aries' means 'the Ram' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during autumn & early winter
-      ⭐ Brightest Stars: Hamal 🌟, Sheratan ✨, and Mesartim 💫
-      📖 Mythology: A magical ram saved two children, Phrixus and Helle, and its golden fleece became famous in the tale of Jason and the Argonauts
-      ♈ Zodiac: Aries is the first zodiac sign (March 21 – April 19). People born under Aries are brave 💪, adventurous 🌍, and energetic ⚡
-    `,
-    img: "/src/assets/aries.png",
-    fact2: `
-      🐏 Ram in the Sky – Aries looks like a ram, but really it’s just a few stars in a bent line. You need imagination to see the shape!
-      🌟 Brightest Star – The star Hamal is the brightest in Aries. It’s about 66 light-years away—that means light takes 66 years to reach us!
-      🪐 Planets Found – Astronomers have discovered exoplanets (planets outside our Solar System) around some Aries stars.
-      ⏳ Very Old – People have known about Aries for thousands of years. It was important to Babylonians, Egyptians, and Greeks.
-      ☀️ First Point of Aries – Long ago, the Sun used to rise in Aries at the start of spring. That’s why Aries was called the “First Point of Aries.”
-      🔭 Not Super Bright – Aries is not the brightest constellation, but once you spot Hamal, you can connect the other stars easily.
-      ♈ Astrology Sign – Aries is the first zodiac sign. People born under Aries are often described as brave, energetic, and adventurous.
-      🛡️ Golden Fleece Story – The magical ram’s golden fleece became one of the most famous treasures in Greek mythology.
-      🌍 Best Time to See – You can see Aries most clearly between October and December in the Northern Hemisphere.
-    `,
-  },
-  {
-    name: "Pisces",
-    fact: `
-      🌌 Represents: Two fish (🐟🐟) swimming in opposite directions
-      ✨ Name: 'Pisces' means 'the Fish' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during winter
-      ⭐ Brightest Stars: Fum al Samakah 🌟, and Al Pherg 🌟
-      📖 Mythology: Represents Aphrodite and her son Eros, who transformed into fish to escape the monster Typhon
-      ♓ Zodiac: Pisces is the twelfth zodiac sign (February 19 – March 20). People born under Pisces are empathetic 💖, artistic 🎨, and intuitive 🔮
-    `,
-    img: "/src/assets/pisces.png",
-  },
-  {
-    name: "Leo",
-    fact: `
-      🌌 Represents: A lion (🦁)
-      ✨ Name: 'Leo' means 'the Lion' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during spring
-      ⭐ Brightest Stars: Regulus 🌟, Denebola ✨, and Algieba 💫
-      📖 Mythology: Represents the Nemean Lion, defeated by Hercules in Greek mythology
-      ♌ Zodiac: Leo is the fifth zodiac sign (July 23 – August 22). People born under Leo are confident 🌟, creative 🎨, and charismatic ✨
-    `,
-    img: "/src/assets/leo.png",
-  },
-  {
-    name: "Scorpio",
-    fact: `
-      🌌 Represents: A scorpion (🦂)
-      ✨ Name: 'Scorpio' means 'the Scorpion' in Latin
-      📍 Location: Best seen in the Southern Hemisphere during winter
-      ⭐ Brightest Stars: Antares 🌟, Shaula ✨, and Sargas 💫
-      📖 Mythology: Represents the scorpion that killed Orion in Greek mythology
-      ♏ Zodiac: Scorpio is the eighth zodiac sign (October 23 – November 21). People born under Scorpio are passionate 🔥, determined 💪, and mysterious 🌌
-    `,
-    img: "/src/assets/scorpio.png",
-  },
-  {
-    name: "Capricorn",
-    fact: `
-      🌌 Represents: A sea goat (🐐🌊)
-      ✨ Name: 'Capricorn' means 'the Goat' in Latin
-      📍 Location: Best seen in the Southern Hemisphere during summer
-      ⭐ Brightest Stars: Deneb Algedi 🌟, Dabih ✨, and Alshat 💫
-      📖 Mythology: Represents the goat Amalthea, who nursed Zeus in Greek mythology
-      ♑ Zodiac: Capricorn is the tenth zodiac sign (December 22 – January 19). People born under Capricorn are disciplined 📚, ambitious 🚀, and practical 🛠️
-    `,
-    img: "/src/assets/capricon.png",
-  },
-  {
-    name: "Aquarius",
-    fact: `
-      🌌 Represents: The water bearer (💧)
-      ✨ Name: 'Aquarius' means 'the Water Carrier' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during autumn
-      ⭐ Brightest Stars: Sadalmelik 🌟, Sadalsuud ✨, and Skat 💫
-      📖 Mythology: Represents Ganymede, the cupbearer to the gods in Greek mythology
-      ♒ Zodiac: Aquarius is the eleventh zodiac sign (January 20 – February 18). People born under Aquarius are innovative 💡, independent 🌍, and humanitarian 🤝
-    `,
-    img: "/src/assets/aquaris.png",
-  },
-  {
-    name: "Cancer",
-    fact: `
-      🌌 Represents: A crab (🦀)
-      ✨ Name: 'Cancer' means 'the Crab' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during spring
-      ⭐ Brightest Stars: Acubens 🌟, Altarf ✨, and Asellus Borealis 💫
-      📖 Mythology: Represents the crab sent by Hera to distract Hercules during his battle with the Hydra
-      ♋ Zodiac: Cancer is the fourth zodiac sign (June 21 – July 22). People born under Cancer are nurturing 💖, intuitive 🔮, and protective 🛡️
-    `,
-    img: "/src/assets/cancer.png",
-  },
-  {
-    name: "Gemini",
-    fact: `
-      🌌 Represents: Twins (👬)
-      ✨ Name: 'Gemini' means 'the Twins' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during winter
-      ⭐ Brightest Stars: Castor 🌟 and Pollux ✨
-      📖 Mythology: Represents the twin brothers Castor and Pollux, who were immortalized in the stars by Zeus
-      ♊ Zodiac: Gemini is the third zodiac sign (May 21 – June 20). People born under Gemini are curious 🤔, adaptable 🌍, and communicative 🗣️
-    `,
-    img: "/src/assets/gemini.png",
-  },
-  {
-    name: "Libra",
-    fact: `
-      🌌 Represents: Scales ⚖️
-      ✨ Name: 'Libra' means 'the Scales' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during autumn
-      ⭐ Brightest Stars: Zubeneschamali 🌟 and Zubenelgenubi ✨
-      📖 Mythology: Represents the scales of justice held by Themis, the goddess of divine law
-      ♎ Zodiac: Libra is the seventh zodiac sign (September 23 – October 22). People born under Libra are diplomatic 🤝, charming ✨, and balanced ⚖️
-    `,
-    img: "/src/assets/libra.png",
-    fact2:""
-  },
-  {
-    name: "Sagittarius",
-    fact: `
-      🌌 Represents: An archer (🏹)
-      ✨ Name: 'Sagittarius' means 'the Archer' in Latin
-      📍 Location: Best seen in the Southern Hemisphere during summer
-      ⭐ Brightest Stars: Kaus Australis 🌟, Nunki ✨, and Alnasl 💫
-      📖 Mythology: Represents the centaur Chiron, a skilled archer and healer in Greek mythology
-      ♐ Zodiac: Sagittarius is the ninth zodiac sign (November 22 – December 21). People born under Sagittarius are adventurous 🌍, optimistic 🌟, and philosophical 📚
-    `,
-    img: "/src/assets/sagittarius.png",
-  },
-  {
-    name: "Taurus",
-    fact: `
-      🌌 Represents: A bull (🐂)
-      ✨ Name: 'Taurus' means 'the Bull' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during spring
-      ⭐ Brightest Stars: Aldebaran 🌟, Elnath ✨, and Alcyone 💫
-      📖 Mythology: Represents the bull that carried Europa across the sea in Greek mythology
-      ♉ Zodiac: Taurus is the second zodiac sign (April 20 – May 20). People born under Taurus are reliable 🛠️, patient 🕰️, and grounded 🌍
-    `,
-    img: "/src/assets/taurus.png",
-  },
-  {
-    name: "Virgo",
-    fact: `
-      🌌 Represents: A maiden (👩)
-      ✨ Name: 'Virgo' means 'the Virgin' in Latin
-      📍 Location: Best seen in the Northern Hemisphere during summer
-      ⭐ Brightest Stars: Spica 🌟, Zavijava ✨, and Porrima 💫
-      📖 Mythology: Represents Demeter, the goddess of agriculture, or Astraea, the goddess of innocence
-      ♍ Zodiac: Virgo is the sixth zodiac sign (August 23 – September 22). People born under Virgo are analytical 🧠, practical 🛠️, and detail-oriented 📋
-    `,
-    img: "/src/assets/virgo.png",
-  },
-];
-
 const starConstellationQuizQuestions = [
   { question: "What does Aries represent?", options: ["A ram", "A lion", "A fish", "A scorpion"], correct: "A ram" },
   { question: "What does Pisces represent?", options: ["Two fish", "A lion", "A ram", "A scorpion"], correct: "Two fish" },
@@ -223,8 +64,57 @@ export default function StarConstellationPage() {
     <div className="min-h-screen flex flex-col text-white relative">
       <SpaceBackground />
       <Header />
-      <main className="flex-grow flex flex-col items-center justify-center p-4">
+      <main className="flex-grow flex flex-col items-center justify-center">
+        <>
+       <div class="w-full h-screen bg-gradient-to-br from-indigo-500/40 to-pink-500/40 flex flex-col items-center">
+          <h1 class="text-4xl md:text-6xl font-bold mb-10 text-center">The Star Constellation</h1>
+
+          
+          <div class="flex flex-col md:flex-row w-full items-center justify-center gap-4">
+
+            
+              <div class="flex items-center justify-center order-1 md:order-2 w-full md:w-1/3">
+                <img
+                  src="/src/assets/ring.jpg"
+                  alt="Star Constellation"
+                  class="w-3/4 sm:w-2/3 md:w-full h-auto rounded-full object-contain transition-all duration-300 animate-slow-spin"
+                />
+              </div>
+
+              
+              <div class="order-2 md:order-1 w-full md:w-1/3 h-32 md:h-auto p-4 flex flex-col items-center justify-center gap-4">
+                  <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 w-72 text-center text-white shadow-lg ">
+                    <p class="text-sm leading-relaxed">
+                      Это шутливый гороскоп с предсказаниями на 2023 год для творческих людей.
+                      Все прогнозы разработаны только с целью поднятия настроения и позитивной мотивации.
+                    </p>
+                  </div>
+
         
+                  <div class="mt-4 px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-lg">
+                    21.03.2023
+                  </div></div>
+
+            
+              <div class="order-3 md:order-3 w-full md:w-1/3 h-32 md:h-auto p-4 flex flex-col items-center justify-center gap-4">
+                <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 w-72 text-center text-white shadow-lg ">
+                    <p class="text-sm leading-relaxed">
+                      Это шутливый гороскоп с предсказаниями на 2023 год для творческих людей.
+                      Все прогнозы разработаны только с целью поднятия настроения и позитивной мотивации.
+                    </p>
+                  </div>
+
+        
+                  <div class="mt-4 px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-lg">
+                    21.03.2023
+                  </div>
+
+              </div>
+
+          </div>
+        </div>
+        <div> </div>
+     </>
         {/* Quiz Button */}
         <div className="mt-8 text-center">
           <button
