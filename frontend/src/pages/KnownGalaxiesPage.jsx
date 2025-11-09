@@ -150,9 +150,9 @@ export default function KnownGalaxiesPage() {
       {/* 🪐 Left Side - Cartoon Heading */}
       <div className="flex-1 text-left space-y-6">
         <h1
-          className="text-5xl md:text-7xl font-[ComicNeue] text-blue-400 animate-bounce-text drop-shadow-blue-300"
+          className="text-5xl md:text-6xl font-[ComicNeue] text-blue-600 animate-bounce-text drop-shadow-blue-500"
         >
-          🌀 Galaxies and Their Amazing Features
+          🌀 𝐆𝐚𝐥𝐚𝐱𝐢𝐞𝐬 𝐚𝐧𝐝 𝐓𝐡𝐞𝐢𝐫 𝐀𝐦𝐚𝐳𝐢𝐧𝐠 𝐅𝐞𝐚𝐭𝐮𝐫𝐞𝐬
         </h1>
         <p className="text-lg text-gray-300 max-w-md leading-relaxed">
           Discover the beauty, mystery, and wonders of galaxies — the home of billions of stars, planets, and cosmic stories.
@@ -199,9 +199,327 @@ export default function KnownGalaxiesPage() {
           animation: twinkle 2s infinite ease-in-out;
         }
       `}</style>
-
-     
     </div>
+
+	<div className="relative min-h-screen bg-transparant text-white p-8 overflow-hidden">
+
+  {/* Star Background */}
+  <div className="absolute inset-0">
+    {Array.from({ length: 50 }).map((_, i) => (
+      <div
+        key={i}
+        className="absolute bg-white rounded-full opacity-50 animate-pulse"
+        style={{
+          width: `${Math.random() * 3 + 1}px`,
+          height: `${Math.random() * 3 + 1}px`,
+          top: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`,
+        }}
+      ></div>
+    ))}
+  </div>
+
+
+
+
+  {/* Galaxy Notes */}
+  <div className="relative z-10 space-y-12">
+	  <h1 className="text-4xl font-extrabold text-blue-300 font-[Comic_Sans_MS] mb-12 text-center animate-glow drop-shadow-amber-300">
+    🌀 Galaxies and Their Amazing Features
+  </h1>
+
+    {/* 1 Andromeda Galaxy */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/g1.jpg" alt="Andromeda Galaxy"
+        className="w-full md:w-1/4 h-auto  object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌠 Andromeda Galaxy (M31)</h2>
+        <p className="font-[Comic_Sans_MS]">The closest large galaxy to the Milky Way. It’s about 2.5 million light-years away. Scientists think the Milky Way and Andromeda will collide in about 4 billion years!</p>
+      </div>
+	  <img
+    src="/src/assets/z1.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 2 Black Eye Galaxy */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/m64.jpg" alt="Black Eye Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌑 Black Eye Galaxy (M64)</h2>
+        <p className="font-[Comic_Sans_MS]">Looks like it has a black eye because of a dark band of dust in front of its bright core. The dust is actually cold gas and stars blocking the light.</p>
+      </div>
+	  <img
+    src="/src/assets/z2.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 3 Cigar Galaxy */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/m82.webp" alt="Cigar Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌌 Cigar Galaxy (M82)</h2>
+        <p className="font-[Comic_Sans_MS]">Long and thin — shaped like a cigar. Very active star formation happens inside it, making it a starburst galaxy.</p>
+      </div>
+	  <img
+    src="/src/assets/z3.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 4 Large Magellanic Cloud */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/lmc.jpg" alt="Large Magellanic Cloud"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌙 Large Magellanic Cloud (LMC)</h2>
+        <p className="font-[Comic_Sans_MS]">A small galaxy orbiting the Milky Way. One of the closest galaxies to us and can be seen with the naked eye from the Southern Hemisphere.</p>
+      </div>
+	  <img
+    src="/src/assets/z4.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 5 Cartwheel Galaxy */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/cartwe.png" alt="Cartwheel Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌀 Cartwheel Galaxy</h2>
+        <p className="font-[Comic_Sans_MS]">Looks like a wheel because of a huge ring of bright, young stars. The ring shape was caused by a smaller galaxy colliding with it long ago.</p>
+      </div>
+	  <img
+    src="/src/assets/z5.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 6 Milky Way Galaxy */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/milky.jpg" alt="Milky Way Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌍 Milky Way Galaxy</h2>
+        <p className="font-[Comic_Sans_MS]">Our home galaxy! A spiral galaxy with billions of stars, including our Sun. It has arms that spiral out from the center like a pinwheel.</p>
+      </div>
+	  <img
+    src="/src/assets/z6.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 7 Hoag's Object */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/hoag.jpg" alt="Hoag's Object"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🔵 Hoag's Object</h2>
+        <p className="font-[Comic_Sans_MS]">A rare type of ring galaxy. It has a perfect circle of blue stars around a yellow core — looks like a cosmic doughnut! 🍩</p>
+      </div>
+	  <img
+    src="/src/assets/z7.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 8 Bode's Galaxy */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/m81.jpg" alt="Bode's Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌟 Bode's Galaxy (M81)</h2>
+        <p className="font-[Comic_Sans_MS]">A beautiful spiral galaxy close to the Cigar Galaxy. It has a bright center and well-defined spiral arms.</p>
+      </div>
+	  <img
+    src="/src/assets/z8.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 9 Pinwheel Galaxy */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/m101.jpg" alt="Pinwheel Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌪️ Pinwheel Galaxy (M101)</h2>
+        <p className="font-[Comic_Sans_MS]">A large, face-on spiral galaxy. Its arms are filled with young, blue stars and pink clouds of gas where new stars are forming.</p>
+      </div>
+	  <img
+    src="/src/assets/z9.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 10 Sombrero Galaxy */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/m104.jpg" alt="Sombrero Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">👒 Sombrero Galaxy (M104)</h2>
+        <p className="font-[Comic_Sans_MS]">Looks like a Mexican hat (sombrero) because of its bright central bulge and dark ring of dust. Has a supermassive black hole in the center.</p>
+      </div>
+	  <img
+    src="/src/assets/z10.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 11 Whirlpool Galaxy */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/m51.webp" alt="Whirlpool Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">💫 Whirlpool Galaxy (M51)</h2>
+        <p className="font-[Comic_Sans_MS]">Famous for its perfect spiral shape. Interacting with a smaller galaxy, which makes its spiral arms even clearer.</p>
+      </div>
+	  <img
+    src="/src/assets/z11.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 12 Comet Galaxy */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/CometGalaxy.jpg" alt="Comet Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">☄️ Comet Galaxy</h2>
+        <p className="font-[Comic_Sans_MS]">Shaped like a comet, with a long tail of stars and gas. The shape formed because it’s being pulled apart by a larger galaxy cluster.</p>
+      </div>
+	  <img
+    src="/src/assets/z12.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 13 NGC 6872 */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/NGC_6872.png" alt="NGC 6872 (Condor Galaxy)"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🌌 NGC 6872 (Condor Galaxy)</h2>
+        <p className="font-[Comic_Sans_MS]">One of the largest spiral galaxies ever found. It’s over five times the size of the Milky Way!</p>
+      </div>
+	  <img
+    src="/src/assets/z13.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 14 CR7 */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/cosmos.jpg" alt="Cosmos Redshift 7 (CR7)"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🔴 Cosmos Redshift 7 (CR7)</h2>
+        <p className="font-[Comic_Sans_MS]">A very distant and ancient galaxy, formed when the universe was young. One of the brightest early galaxies ever discovered.</p>
+      </div>
+	  <img
+    src="/src/assets/z14.png"
+    alt="Solar Sail"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 15 Fireworks Galaxy */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/Fireworks_Galaxy.jpg" alt="Fireworks Galaxy"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🎆 Fireworks Galaxy (NGC 6946)</h2>
+        <p className="font-[Comic_Sans_MS]">Called the Fireworks Galaxy because it has many supernova explosions. Has had more than 10 supernovas in the last 100 years.</p>
+      </div>
+	  <img
+    src="/src/assets/z15.png"
+    alt="AI Robotics"
+    className="w-40 h-40 object-contain animate-float"
+  />
+    </div>
+
+    {/* 16 Antennae Galaxies */}
+    <div className="flex flex-col md:flex-row items-center gap-8">
+      <img src="/src/assets/anten.jpg" alt="Antennae Galaxies"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🦋 Antennae Galaxies</h2>
+        <p className="font-[Comic_Sans_MS]">Two colliding galaxies that look like insect antennae. The collision causes massive star formation.</p>
+      </div>
+	  <img
+    src="/src/assets/z16.png"
+    alt="Small Satellite"
+    className="w-40 h-40 object-contain animate-float-slow"
+  />
+    </div>
+
+    {/* 17 Seyfert Galaxies */}
+    <div className="flex flex-col md:flex-row-reverse items-center gap-8">
+      <img src="/src/assets/setfert.png" alt="Seyfert Galaxies"
+        className="w-full md:w-1/4 h-auto object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-700" />
+      <div className="bg-white/10 p-6 rounded-2xl backdrop-blur-md border border-white/20 md:w-1/2">
+        <h2 className="text-2xl font-bold text-blue-200 font-[Comic_Sans_MS] mb-3">🔭 Seyfert Galaxies</h2>
+        <p className="font-[Comic_Sans_MS]">Special type of spiral galaxy with a very bright center. The brightness comes from a supermassive black hole pulling in gas and dust.</p>
+      </div>
+	  
+    <img
+      src="/src/assets/z17.png"
+      alt="Animated Galaxy"
+      className="w-40 h-40 object-contain animate-float"
+    />
+	</div>
+    
+	  <style jsx>{`
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-10px) rotate(-5deg); }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .animate-float-slow {
+      animation: float-slow 4s ease-in-out infinite;
+    }
+  `}</style>
+
+  </div>
+
+  <style jsx>{`
+    @keyframes pulse-star {
+      0%,100% { transform: translateY(0); opacity: 0.5; }
+      50% { transform: translateY(-10px); opacity: 1; }
+    }
+    .animate-pulse { animation: pulse-star 3s ease-in-out infinite; }
+  `}</style>
+</div>
+
+{/* End Section */}
+  <div className="text-center mt-16">
+    <h2 className="text-3xl font-[Comic_Sans_MS] text-yellow-300 animate-bounce">✨ The Universe is Full of Wonders! ✨</h2>
+  </div>
+
+
+
       
       
 			
