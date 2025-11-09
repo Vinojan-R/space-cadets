@@ -142,7 +142,7 @@ export default function HomePage() {
             loop
             playsInline
             onLoadedData={handleVideoLoad}
-            preload="auto"
+            preload="autoplay"
           >
             <source src={SOLAR_SYSTEM_VIDEO} type="video/mp4" />
             Your browser does not support the video tag.
