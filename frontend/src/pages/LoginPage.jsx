@@ -7,26 +7,40 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    setIsLoading(true);
 
-    // ✅ Get stored users (from RegisterPage.jsx)
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.username === username && u.password === password
-    );
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
-    if (user) {
-      // ✅ Save login state
-      localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", user.username);
+      const data = await res.json();
 
-      // ✅ Redirect to HomePage
-      navigate("/home");
-    } else {
-      setError("❌ Invalid username or password!");
+      if (res.ok) {
+        // store token and user info as returned by backend
+        if (data.token) localStorage.setItem("token", data.token);
+        if (data.user) localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("isLoggedIn", "true");
+        // optional: store username for legacy parts of app
+        localStorage.setItem("username", data.user?.username || username);
+
+        navigate("/home");
+      } else {
+        setError(data.message || "❌ Invalid username or password!");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("❌ Unable to reach server. Please try again later.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,9 +78,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-500 p-3 rounded transition duration-200"
+            disabled={isLoading}
+            className={`w-full p-3 rounded transition duration-200 ${isLoading ? "bg-blue-400 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-500"}`}
           >
-            Login
+            {isLoading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>

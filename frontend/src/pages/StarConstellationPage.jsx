@@ -2,7 +2,7 @@ import { useState } from "react";
 import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
+import Stars from "../components/stars";
 const starConstellationQuizQuestions = [
   { question: "What does Aries represent?", options: ["A ram", "A lion", "A fish", "A scorpion"], correct: "A ram" },
   { question: "What does Pisces represent?", options: ["Two fish", "A lion", "A ram", "A scorpion"], correct: "Two fish" },
@@ -66,55 +66,54 @@ export default function StarConstellationPage() {
       <Header />
       <main className="flex-grow flex flex-col items-center justify-center">
         <>
-       <div class="w-full h-screen bg-gradient-to-br from-indigo-500/40 to-pink-500/40 flex flex-col items-center">
-          <h1 class="text-4xl md:text-6xl font-bold mb-10 text-center">The Star Constellation</h1>
+          <section className="w-full py-12 bg-gradient-to-br from-indigo-500/20 to-pink-500/20">
+            <div className="max-w-5xl mx-auto px-4">
+              <h1 className="text-4xl md:text-6xl font-bold mb-8 text-center">The Star Constellation</h1>
 
-          
-          <div class="flex flex-col md:flex-row w-full items-center justify-center gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                {/* Left card (mobile first) */}
+                <div className="flex justify-center md:justify-end">
+                  <div className="w-full max-w-md">
+                    <div className="inline-block px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-base sm:text-lg text-center">
+                      Explore the Cosmos Within You
+                    </div>
 
-            
-              <div class="flex items-center justify-center order-1 md:order-2 w-full md:w-1/3">
-                <img
-                  src="/src/assets/ring.jpg"
-                  alt="Star Constellation"
-                  class="w-3/4 sm:w-2/3 md:w-full h-auto rounded-full object-contain transition-all duration-300 animate-slow-spin"
-                />
+                    <div className="mt-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 w-full text-center text-white shadow-lg">
+                      <p className="text-sm sm:text-base leading-relaxed">
+                        Welcome to The Star Constellation! Since ancient times, humanity has looked to the night sky, finding meaning and wonder in the patterns of stars. These celestial maps, or zodiac signs, are said to influence personality, creativity, and destiny. Dive in and discover the unique blend of characteristics shaped by your personal constellation.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Center image */}
+                <div className="flex items-center justify-center bg-green/200 ">
+                  <img
+                    src="/src/assets/ring.jpg"
+                    alt="Star Constellation"
+                    className="rounded-full w-auto h-64 md:w-full md:h-auto lg:w-[420px] lg:h-[420px] rounded-full object-contain transition-transform duration-500 animate-slow-spin hover:scale-105"
+                  />
+                </div>
+
+                {/* Right card */}
+                <div className="flex justify-center md:justify-start">
+                  <div className="w-full max-w-md">
+                    <div className="inline-block px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-base sm:text-lg text-center">
+                      A Fun Forecast
+                    </div>
+
+                    <div className="mt-4 backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-4 sm:p-6 w-full text-center text-white shadow-lg">
+                      <p className="text-sm sm:text-base leading-relaxed">
+                        We believe in the power of positive motivation and good vibes! The insights you'll find here are designed specifically for creative minds and free spirits. Take them as playful nudges and inspiration to spark your next great idea. It’s all about fun and lifting your mood—let the stars guide your imagination!
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-
-              
-              <div class="order-2 md:order-1 w-full md:w-1/3 h-32 md:h-auto p-4 flex flex-col items-center justify-center gap-4">
-                  <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 w-72 text-center text-white shadow-lg ">
-                    <p class="text-sm leading-relaxed">
-                      Это шутливый гороскоп с предсказаниями на 2023 год для творческих людей.
-                      Все прогнозы разработаны только с целью поднятия настроения и позитивной мотивации.
-                    </p>
-                  </div>
-
-        
-                  <div class="mt-4 px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-lg">
-                    21.03.2023
-                  </div></div>
-
-            
-              <div class="order-3 md:order-3 w-full md:w-1/3 h-32 md:h-auto p-4 flex flex-col items-center justify-center gap-4">
-                <div class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-6 w-72 text-center text-white shadow-lg ">
-                    <p class="text-sm leading-relaxed">
-                      Это шутливый гороскоп с предсказаниями на 2023 год для творческих людей.
-                      Все прогнозы разработаны только с целью поднятия настроения и позитивной мотивации.
-                    </p>
-                  </div>
-
-        
-                  <div class="mt-4 px-6 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-lg">
-                    21.03.2023
-                  </div>
-
-              </div>
-
-          </div>
-        </div>
-        <div> </div>
-     </>
+            </div>
+            <Stars />
+          </section>
+        </>
         {/* Quiz Button */}
         <div className="mt-8 text-center">
           <button

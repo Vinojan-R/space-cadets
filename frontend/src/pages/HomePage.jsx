@@ -57,7 +57,7 @@ export default function HomePage() {
     if (videoRef.current) {
       videoRef.current.play().catch(console.error);
     }
-git   };
+  };
 
   const explorationCards = [
     { 

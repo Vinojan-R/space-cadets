@@ -9,7 +9,7 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
-  const [userRank, setUserRank] = useState(null);
+  // removed unused userRank state
 
   // Settings fields
   const [newUsername, setNewUsername] = useState("");
@@ -19,9 +19,7 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
   const [reminders, setReminders] = useState("");
 
   const [uploadedImage, setUploadedImage] = useState(null);
-  const contentRef = useRef(null);
-  const [showCornerScroll, setShowCornerScroll] = useState(false);
-  const [atBottom, setAtBottom] = useState(false);
+  const contentRef = useRef(null); // keep ref if needed later
 
   const navigate = useNavigate();
 
@@ -32,40 +30,9 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
         // keep leaderboard sorted desc by score
         const sorted = (data || []).sort((a, b) => (b.score || 0) - (a.score || 0));
         setLeaderboard(sorted);
-        // set user's rank if available
-        const idx = sorted.findIndex((p) => String(p._id) === String(userId) || p._id === userId);
-        setUserRank(idx >= 0 ? idx + 1 : null);
       })
       .catch((err) => console.error("Failed to fetch leaderboard:", err));
   }, [userId]);
-
-  useEffect(() => {
-    const el = contentRef.current;
-    if (!el) return;
-    const checkOverflow = () => {
-      setShowCornerScroll(el.scrollHeight > el.clientHeight);
-      setAtBottom(el.scrollTop + el.clientHeight >= el.scrollHeight - 4);
-    };
-    checkOverflow();
-    el.addEventListener("scroll", checkOverflow);
-    window.addEventListener("resize", checkOverflow);
-    return () => {
-      el.removeEventListener("scroll", checkOverflow);
-      window.removeEventListener("resize", checkOverflow);
-    };
-  }, []);
-
-  const handleCornerScroll = () => {
-    const el = contentRef.current;
-    if (!el) return;
-    if (!atBottom) {
-      // scroll down one "page"
-      el.scrollBy({ top: el.clientHeight - 48, behavior: "smooth" });
-    } else {
-      // if already at bottom, scroll to top
-      el.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("user");
