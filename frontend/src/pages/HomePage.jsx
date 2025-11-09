@@ -168,8 +168,8 @@ export default function HomePage() {
         <div className="relative z-10 h-full flex items-center pt-16">
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-                Explore Our Solar System
+              <h1 className="text-2xl md:text-7xl font-bold mb-6 text-white">
+                Welcome to our space cadets website 
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
                 Journey through the cosmos and discover the wonders of our planetary neighborhood. 
