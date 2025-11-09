@@ -144,23 +144,69 @@ export default function KnownGalaxiesPage() {
 			<Header activePage="knowngalaxies" />
 			<SearchBar data={galaxies} />
 			<main className="flex-grow flex flex-col items-center justify-center p-4">
-				<h1 className="text-4xl font-bold mb-6 text-purple-300">Known Galaxies</h1>
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-5xl">
-					{galaxies.map((galaxy, idx) => (
-						<div
-							key={idx}
-							className="bg-purple-900/80 rounded-xl shadow-lg p-6 flex flex-col items-center hover:scale-105 transition-transform border-2 border-purple-400"
-						>
-							<img
-								src={galaxy.img}
-								alt={galaxy.name}
-								className="w-32 h-32 object-cover rounded-full mb-4 border-4 border-purple-300"
-							/>
-							<span className="text-2xl font-bold mb-2">{galaxy.name}</span>
-							<span className="text-lg text-purple-200">{galaxy.fact}</span>
-						</div>
-					))}
-				</div>
+			<>
+			
+	  <div className="flex flex-col md:flex-row items-center justify-between min-h-100 bg-transparent text-white px-10 overflow-hidden">
+      {/* 🪐 Left Side - Cartoon Heading */}
+      <div className="flex-1 text-left space-y-6">
+        <h1
+          className="text-5xl md:text-7xl font-[ComicNeue] text-blue-400 animate-bounce-text drop-shadow-blue-300"
+        >
+          🌀 Galaxies and Their Amazing Features
+        </h1>
+        <p className="text-lg text-gray-300 max-w-md leading-relaxed">
+          Discover the beauty, mystery, and wonders of galaxies — the home of billions of stars, planets, and cosmic stories.
+        </p>
+      </div>
+
+      {/* 🎥 Right Side - Auto Playing Video */}
+      <div className="flex-1 mt-10 md:mt-0 md:ml-10">
+        <video
+          src="/src/assets/galaxy.mp4" 
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="rounded-3xl shadow-lg w-full h-auto object-cover"
+        ></video>
+      </div>
+
+      
+
+      {/* ✨ Animation Styles */}
+      <style jsx>{`
+        @keyframes bounce-text {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        .animate-bounce-text {
+          animation: bounce-text 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+          0%, 100% {
+            opacity: 0.3;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+        .animate-twinkle {
+          animation: twinkle 2s infinite ease-in-out;
+        }
+      `}</style>
+
+     
+    </div>
+      
+      
+			
+			
+			</>
 				<div className="mt-8 text-center">
 					<button
 						className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
