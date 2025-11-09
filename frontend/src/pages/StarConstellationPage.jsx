@@ -2,7 +2,7 @@ import { useState } from "react";
 import SpaceBackground from "../components/SpaceBackground";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import Starimage from "../assets/star.jpg";
+
 const constellations = [
   {
     name: "Aries",
@@ -224,95 +224,7 @@ export default function StarConstellationPage() {
       <SpaceBackground />
       <Header />
       <main className="flex-grow flex flex-col items-center justify-center p-4">
-         <section className="relative w-full">
-                  <div
-            className="relative flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-6xl py-20 mx-auto
-                bg-cover bg-center bg-no-repeat bg-blend-overlay bg-black/50"
-            style={{ backgroundImage: `url(${Starimage})`}}
-          ><div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
-
-              <div className="relative z-10 flex-1 text-center md:text-left px-6">
-                <h1 className="text-5xl md:text-6xl font-extrabold text-yellow-400 mb-4 drop-shadow-lg">
-                  ✨ Explore the Stars and Constellations!
-                </h1>
-                <p className="text-lg md:text-xl text-gray-200 drop-shadow">
-                  Discover the fascinating world of star constellations, their myths, and
-                  fun facts. Test your knowledge with our exciting quiz and earn badges!
-                </p>
-              </div></div>
-        </section>
         
-        {selectedIndex === null ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 w-full max-w-5xl">
-            {constellations.map((constellation, idx) => (
-              <button
-                key={idx}
-                className="bg-[#bd002f]/10 rounded-xl shadow-lg p-6 flex flex-col items-center hover:bg-indigo-700 transition-transform border-2 border-indigo-400"
-                onClick={() => setSelectedIndex(idx)}
-              >
-                <img
-                  src={constellation.img}
-                  alt={constellation.name}
-                  className="w-32 h-32 object-cover mb-4"
-                />
-                <span className="text-2xl font-bold mb-2">{constellation.name}</span>
-              </button>
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col sm:flex-row items-center sm:items-start justify-center gap-8 w-full max-w-">
-            {/* Left Details */}
-            <div className="bg-indigo-900/80 rounded-xl shadow-lg p-6 flex flex-col items-center sm:w-1/3">
-              <h2 className="text-3xl font-bold mb-4">
-                {constellations[selectedIndex].name}
-              </h2>
-              <p className="text-lg text-indigo-200 whitespace-pre-line leading-relaxed">
-                {constellations[selectedIndex].fact}
-              </p>
-
-            </div>
-
-            {/* Constellation Image */}
-            <div className="flex items-center justify-center">
-              <img
-                src={constellations[selectedIndex].img}
-                alt={constellations[selectedIndex].name}
-                className="w-auto h-70 object-cover shadow-lg"
-              />
-            </div>
-
-            {/* Right Details */}
-            <div className="bg-indigo-900/80 rounded-xl shadow-lg p-6 flex flex-col items-center sm:w-1/3">
-              <h2 className="text-3xl font-bold mb-4">Fun Fact</h2>
-              <p className="text-lg text-indigo-200 whitespace-pre-line leading-relaxed">
-                {constellations[selectedIndex].fact2}
-              </p>
-
-            </div>
-          </div>
-        )}
-        {selectedIndex !== null && (
-          <div className="flex gap-4 mt-6">
-            <button
-              className="bg-red-500 px-6 py-2 rounded font-bold text-white hover:bg-red-600"
-              onClick={handlePrevious}
-            >
-              Previous
-            </button>
-            <button
-              className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
-              onClick={handleNext}
-            >
-              Next
-            </button>
-            <button
-              className="bg-gray-500 px-6 py-2 rounded font-bold text-white hover:bg-gray-600"
-              onClick={() => setSelectedIndex(null)}
-            >
-              Back to Constellations
-            </button>
-          </div>
-        )}
         {/* Quiz Button */}
         <div className="mt-8 text-center">
           <button
