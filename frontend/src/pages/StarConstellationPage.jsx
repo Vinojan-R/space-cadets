@@ -70,10 +70,10 @@ export default function StarConstellationPage() {
             <div className="max-w-5xl mx-auto px-4">
               <h1 className="text-4xl md:text-6xl font-bold mb-8 text-center">The Star Constellation</h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start md:items-center justify-center">
                 {/* Left card (mobile first) */}
-                <div className="flex justify-center md:justify-end">
-                  <div className="w-full max-w-md">
+                <div className="flex justify-center items-center md:justify-center">
+                  <div className="justify-center items-center w-full max-w-md">
                     <div className="inline-block px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-base sm:text-lg text-center">
                       Explore the Cosmos Within You
                     </div>
@@ -96,7 +96,7 @@ export default function StarConstellationPage() {
                 </div>
 
                 {/* Right card */}
-                <div className="flex justify-center md:justify-start">
+                <div className="flex justify-center items-centermd:justify-start">
                   <div className="w-full max-w-md">
                     <div className="inline-block px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-base sm:text-lg text-center">
                       A Fun Forecast

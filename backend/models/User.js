@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const SALT_ROUNDS = 10;
 
@@ -26,11 +26,11 @@ const UserSchema = new mongoose.Schema(
     isPro: { type: Boolean, default: false },
 
     // Game / app data
-    score: { type: Number, default: 0 },       // leaderboard score
-    badges: [{ type: String }],                // earned badges
+    score: { type: Number, default: 0 },
+    badges: [{ type: String }],
 
     // Settings
-    reminders: { type: String, default: "" },  // simple text reminder setting
+    reminders: { type: String, default: "" },
     settings: {
       theme: { type: String, default: "dark" },
       notifications: {
@@ -67,4 +67,6 @@ UserSchema.methods.comparePassword = function (candidate) {
   return bcrypt.compare(candidate, this.password);
 };
 
-module.exports = mongoose.models.User || mongoose.model("User", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+
+export default User;
