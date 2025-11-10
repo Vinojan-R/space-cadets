@@ -12,54 +12,83 @@ export default function Aboutpage() {
           <SpaceBackground />
         </div>
 
-        {/* content */}
-        <main className="min-h-screen bg-transparent text-gray-100 py-12 px-4">
-          <div className="max-w-4xl mx-auto bg-gradient-to-b from-slate-800/60 to-slate-900/60 rounded-2xl shadow-lg p-8 backdrop-blur">
-            <header className="mb-6">
-              <h1 className="text-3xl font-bold">About Space Cadets</h1>
-              <p className="mt-2 text-sm text-gray-300">
-                Space Cadets is a lightweight learning and exploration app that blends astronomy,
-                interactivity and friendly gamification to help users discover constellations, track
-                progress and compete on a leaderboard.
-              </p>
-            </header>
+       
+      {/* 🔹 Page Content */}
+      <div className="relative z-10 flex flex-col justify-center items-center h-screen text-center px-6">
+        <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 font-[Comic_Sans_MS] mb-6">
+          👥 About Us
+        </h1>
 
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold">Our mission</h2>
-              <p className="mt-2 text-gray-300">
-                Make stargazing and basic astronomy approachable for everyone. We focus on clear
-                explanations, quick drills, and visual tools so you can learn constellations and
-                astronomical stories in small, repeatable steps.
-              </p>
-            </section>
-
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold">What you'll find here</h2>
-              <ul className="mt-2 list-disc list-inside text-gray-300 space-y-1">
-                <li>Interactive constellation cards with descriptions and imagery.</li>
-                <li>Daily learning reminders and a simple streak system to keep you motivated.</li>
-                <li>A leaderboard to compare progress with friends.</li>
-                <li>User settings for profile, avatar and basic account management.</li>
-              </ul>
-            </section>
-
-            <section className="mb-6">
-              <h2 className="text-xl font-semibold">Tech stack</h2>
-              <p className="mt-2 text-gray-300">
-                Frontend: React + Tailwind. Backend: Node.js + Express + MongoDB. The app uses a small
-                REST API for search, settings and leaderboard features.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-semibold">Get in touch</h2>
-              <p className="mt-2 text-gray-300">
-                Found a bug or have a suggestion? Open an issue in the project repository or contact
-                the maintainer via the project README. Contributions and feedback are welcome.
-              </p>
-            </section>
+        {/* 🔸 Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-15 max-w-6xl">
+          {/* Box 1 */}
+          <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
+            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+              🪐 Who We Are
+            </h2>
+            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+              Space Kits is a university project promoting space knowledge and
+              innovation among students and enthusiasts.
+            </p>
           </div>
-        </main>
+
+          {/* Box 2 */}
+          <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
+            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+              🎯 Aim
+            </h2>
+            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+              To encourage curiosity and creative learning in the field of space
+              science and technology.
+            </p>
+          </div>
+
+          {/* Box 3 */}
+          <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
+            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+              🌠 Mission
+            </h2>
+            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+             Our mission is to make space education fun and easy for Space Kits through creative and engaging learning.
+            </p>
+          </div>
+
+          {/* Box 4 */}
+          <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
+            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+              🚀 Vision
+            </h2>
+            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+              Inspire students to explore and innovate in space science for a
+              sustainable future.
+            </p>
+          </div>
+
+          {/* Box 5 */}
+          <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
+            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+              👩‍🚀 Our Team
+            </h2>
+            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+             • Fathima nuha • Naja naffer • Vinojan • Pathushan • Josiya
+            </p>
+          </div>
+
+          {/* Box 6 */}
+          <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
+            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+              📬 Contact Us
+            </h2>
+            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+              📧 spacekitsuniversity@gmail.com <br />
+              🌐 www.spacekitsuniversity.com <br />
+              📍 Rajarata University of Sri Lanka
+            </p>
+          </div>
+        </div>
+      </div>
+    
+
       </div>
     </>
   );

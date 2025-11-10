@@ -12,7 +12,7 @@ export default function Header({ onNotificationClick, activePage }) {
   const username = localStorage.getItem("username") || "Guest"; // Replace with actual logic
 
   return (
-    <header className="flex justify-between items-center bg-gray-900/50 backdrop-blur-md text-white p-4 relative">
+    <header className="flex justify-between items-center bg-transparant backdrop-blur-md text-white p-4 relative">
       {/* Logo + Title */}
       <div className="flex items-center gap-2">
         <img src={logo} alt="Space Cadets Logo" className="w-15 h-auto" />
