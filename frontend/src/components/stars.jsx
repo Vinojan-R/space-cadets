@@ -2,18 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 
 export default function Stars({ signs: signsProp } = {}) {
   const defaultSigns = [
-    { id: "aries", name: "Aries", image: "/src/assets/signs/aries.png", colors: ["#ffb49a", "#ff7a7a"], date: "21 Mar – 19 Apr", leftText: "Это шутливый гороскоп с предсказаниями на 2023 год для творческих людей. Все прогнозы разработаны с целью поднятия настроения и позитивной мотивации", leftDate: "21.03.2023", rightText: "Выбирай свой знак зодиака или подсмотри, что ждёт твоих друзей. Обязательно сбудется, если поделиться предсказанием в соцсетях :)", rightDate: "20.03.2024" },
-    { id: "taurus", name: "Taurus", image: "/src/assets/signs/taurus.png", colors: ["#ffd7a8", "#ffb86b"], date: "20 Apr – 20 May" },
-    { id: "gemini", name: "Gemini", image: "/src/assets/signs/gemini.png", colors: ["#d3c6ff", "#9b8cff"], date: "21 May – 20 Jun" },
-    { id: "cancer", name: "Cancer", image: "/src/assets/signs/cancer.png", colors: ["#a8f0ff", "#6fe0ff"], date: "21 Jun – 22 Jul" },
-    { id: "leo", name: "Leo", image: "/src/assets/signs/leo.png", colors: ["#ffd3a8", "#ffb86b"], date: "23 Jul – 22 Aug" },
-    { id: "virgo", name: "Virgo", image: "/src/assets/signs/virgo.png", colors: ["#cbe6a8", "#8fd66b"], date: "23 Aug – 22 Sep" },
-    { id: "libra", name: "Libra", image: "/src/assets/signs/libra.png", colors: ["#ffd0ff", "#d99bff"], date: "23 Sep – 22 Oct" },
-    { id: "scorpio", name: "Scorpio", image: "/src/assets/signs/scorpio.png", colors: ["#d0cfff", "#9b7aff"], date: "23 Oct – 21 Nov" },
-    { id: "sagittarius", name: "sagittarius", image: "/src/assets/signs/sagittarris.png", colors: ["#ffc9a2", "#ff9a5c"], date: "22 Nov – 21 Dec" },
-    { id: "capricorn", name: "Capricorn", image: "/src/assets/signs/capricon.png", colors: ["#bfe0ff", "#78b8ff"], date: "22 Dec – 19 Jan" },
-    { id: "aquarius", name: "aquarius", image: "/src/assets/signs/aquarius.png", colors: ["#a8fff0", "#6be6d0"], date: "20 Jan – 18 Feb" },
-    { id: "pisces", name: "pisces", image: "/src/assets/signs/pisces.png", colors: ["#cfe0ff", "#9ab8ff"], date: "19 Feb – 20 Mar" }
+    { id: "aries", name: "Aries", image: "/src/assets/signs/aries.png", cardImage: "/src/assets/signs/card-aries.png", colors: ["#ffb49a", "#ff7a7a"], date: "21 Mar – 19 Apr", leftText: "Это шутливый гороскоп с предсказаниями на 2023 год для творческих людей. Все прогнозы разработаны с целью поднятия настроения и позитивной мотивации", leftDate: "21.03.2023", rightText: "Выбирай свой знак зодиака или подсмотри, что ждёт твоих друзей. Обязательно сбудется, если поделиться предсказанием в соцсетях :)", rightDate: "20.03.2024" },
+    { id: "taurus", name: "Taurus", image: "/src/assets/signs/taurus.png", cardImage: "/src/assets/signs/card-taurus.png", colors: ["#ffd7a8", "#ffb86b"], date: "20 Apr – 20 May" },
+    { id: "gemini", name: "Gemini", image: "/src/assets/signs/gemini.png", cardImage: "/src/assets/signs/card-gemini.png", colors: ["#d3c6ff", "#9b8cff"], date: "21 May – 20 Jun" },
+    { id: "cancer", name: "Cancer", image: "/src/assets/signs/cancer.png",cardImage: "/src/assets/signs/card-cancer.png", colors: ["#a8f0ff", "#6fe0ff"], date: "21 Jun – 22 Jul" },
+    { id: "leo", name: "Leo", image: "/src/assets/signs/leo.png",cardImage: "/src/assets/signs/card-leo.png", colors: ["#ffd3a8", "#ffb86b"], date: "23 Jul – 22 Aug" },
+    { id: "virgo", name: "Virgo", image: "/src/assets/signs/virgo.png",cardImage: "/src/assets/signs/card-virgo.png", colors: ["#cbe6a8", "#8fd66b"], date: "23 Aug – 22 Sep" },
+    { id: "libra", name: "Libra", image: "/src/assets/signs/libra.png", cardImage: "/src/assets/signs/card-libra.png",colors: ["#ffd0ff", "#d99bff"], date: "23 Sep – 22 Oct" },
+    { id: "scorpio", name: "Scorpio", image: "/src/assets/signs/scorpio.png", cardImage: "/src/assets/signs/card-scorio.png",colors: ["#d0cfff", "#9b7aff"], date: "23 Oct – 21 Nov" },
+    { id: "sagittarius", name: "sagittarius", image: "/src/assets/signs/sagittarris.png",cardImage: "/src/assets/signs/card-sagittaruis.png", colors: ["#ffc9a2", "#ff9a5c"], date: "22 Nov – 21 Dec" },
+    { id: "capricorn", name: "Capricorn", image: "/src/assets/signs/capricon.png", cardImage: "/src/assets/signs/card-capricorn.png",colors: ["#bfe0ff", "#78b8ff"], date: "22 Dec – 19 Jan" },
+    { id: "aquarius", name: "aquarius", image: "/src/assets/signs/aquarius.png",cardImage: "/src/assets/signs/card-aquarius.png", colors: ["#a8fff0", "#6be6d0"], date: "20 Jan – 18 Feb" },
+    { id: "pisces", name: "pisces", image: "/src/assets/signs/pisces.png", cardImage: "/src/assets/signs/card-pisces.png", colors: ["#cfe0ff", "#9ab8ff"], date: "19 Feb – 20 Mar" }
   ];
 
   const signs = Array.isArray(signsProp) && signsProp.length ? signsProp : defaultSigns;
@@ -142,33 +142,37 @@ export default function Stars({ signs: signsProp } = {}) {
         </div>
       </div>
 
-      {/* Grid of sign cards */}
-      <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+      {/* Grid of sign cards (background images + overlay text) */}
+      <div className="mt-10 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-4">
         {signs.map((s, i) => {
           const isActive = i === selectedIndex;
-          const from = s.colors?.[0] ?? "#2b2b2b";
-          const to = s.colors?.[1] ?? "#4b4b4b";
+          const bg = s.cardImage || s.image;
           return (
             <button
               key={s.id || s.name || i}
               onClick={() => onSelectCard(i)}
-              className={`relative rounded-2xl p-4 text-center text-white shadow-lg transform transition-all duration-300 focus:outline-none
+              className={`relative rounded-2xl text-white shadow-lg transform transition-all duration-300 focus:outline-none
                 ${isActive ? "ring-4 ring-indigo-400/50 scale-105" : "hover:scale-105 hover:shadow-2xl"}`}
-              style={{
-                background: `linear-gradient(135deg, ${from}, ${to})`,
-                minHeight: 120
-              }}
+              style={{ minHeight: '250px', padding: 0, border: 'none', background: 'transparent' }}
             >
-              <div className="text-sm font-medium mb-2">{s.name}</div>
+              {/* inner visual card keeps overflow-hidden so the rounded corners and image crop correctly */}
+              <div
+                className="absolute inset-0 rounded-2xl overflow-hidden"
+                style={{
+                  backgroundImage: `url(${bg})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center"
+                }}
+              >
+                
 
-              <div className="mx-auto w-16 h-16 rounded-full overflow-hidden border border-white/10 mb-2">
-                <img src={s.image} alt={s.name} className="w-full h-full object-cover" />
+                {/* optional decorative gradient if you want more contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+
               </div>
 
-              <div className="text-xs text-white/90">{s.date}</div>
-
               {isActive && (
-                <div className="absolute -top-3 right-3 bg-indigo-500 text-white text-xs px-2 py-1 rounded-full shadow-sm">
+                <div className="absolute top-3 right-3 bg-indigo-500 text-white text-xs px-2 py-1 rounded-full shadow-sm z-30">
                   Selected
                 </div>
               )}

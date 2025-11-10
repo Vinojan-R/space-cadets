@@ -89,7 +89,7 @@ export default function StarConstellationPage() {
                 {/* Center image */}
                 <div className="flex items-center justify-center bg-green/200 ">
                   <img
-                    src="/src/assets/ring.jpg"
+                    src="/src/assets/ring.png"
                     alt="Star Constellation"
                     className="rounded-full w-auto h-64 md:w-full md:h-auto lg:w-[420px] lg:h-[420px] rounded-full object-contain transition-transform duration-500 animate-slow-spin hover:scale-105"
                   />
