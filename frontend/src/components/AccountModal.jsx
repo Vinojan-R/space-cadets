@@ -1,5 +1,5 @@
 // src/components/AccountModal.jsx
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useDropzone } from "react-dropzone";
@@ -9,27 +9,20 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
-
-  // Settings fields
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState("");
+  const [uploadedImage, setUploadedImage] = useState(null);
   const [loginActivity, setLoginActivity] = useState([]);
   const [reminders, setReminders] = useState("");
-
-  const [uploadedImage, setUploadedImage] = useState(null);
   const contentRef = useRef(null);
-
   const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/api/leaderboard")
-      .then((res) => res.json())
-      .then((data) => {
-        const sorted = (data || []).sort((a, b) => (b.score || 0) - (a.score || 0));
-        setLeaderboard(sorted);
-      })
-      .catch((err) => console.error("Failed to fetch leaderboard:", err));
+      .then((r) => r.json())
+      .then((d) => setLeaderboard((d || []).sort((a, b) => (b.score || 0) - (a.score || 0))))
+      .catch(() => {});
   }, [userId]);
 
   const handleLogout = () => {
@@ -38,337 +31,148 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
     navigate("/");
   };
 
+  const putJson = async (url, body) => {
+    const res = await fetch(url, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    return res.json();
+  };
+
   const updateUsername = async () => {
     if (!newUsername.trim()) return alert("Enter a valid username");
-    try {
-      const res = await fetch("http://localhost:5000/api/settings/username", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, newUsername }),
-      });
-      const data = await res.json();
-      alert(data.message);
-    } catch (error) {
-      console.error("Failed to update username:", error);
-    }
+    const data = await putJson("http://localhost:5000/api/settings/username", { userId, newUsername });
+    alert(data.message || "Updated");
   };
 
   const updatePassword = async () => {
     if (!newPassword.trim()) return alert("Enter a valid password");
-    try {
-      const res = await fetch("http://localhost:5000/api/settings/password", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, newPassword }),
-      });
-      const data = await res.json();
-      alert(data.message);
-    } catch (error) {
-      console.error("Failed to update password:", error);
-    }
+    const data = await putJson("http://localhost:5000/api/settings/password", { userId, newPassword });
+    alert(data.message || "Updated");
   };
 
   const updateProfilePicture = async () => {
-    if (!uploadedImage) return alert("Please upload a valid image.");
-    try {
-      const formData = new FormData();
-      formData.append("userId", userId);
-      formData.append("profilePicture", uploadedImage);
-
-      const res = await fetch("http://localhost:5000/api/settings/profile-picture", {
-        method: "PUT",
-        body: formData,
-      });
-
-      const data = await res.json();
-      alert(data.message);
-      setProfilePicture(data.profilePictureUrl);
-    } catch (error) {
-      console.error("Failed to update profile picture:", error);
-    }
+    if (!uploadedImage) return alert("Upload an image");
+    const fd = new FormData();
+    fd.append("userId", userId);
+    fd.append("profilePicture", uploadedImage);
+    const res = await fetch("http://localhost:5000/api/settings/profile-picture", { method: "PUT", body: fd });
+    const data = await res.json();
+    setProfilePicture(data.profilePictureUrl || profilePicture);
+    alert(data.message || "Updated");
   };
 
   const fetchLoginActivity = async () => {
-    try {
-      const res = await fetch(`http://localhost:5000/api/settings/login-activity/${userId}`);
-      const data = await res.json();
-      setLoginActivity(data);
-    } catch (error) {
-      console.error("Failed to fetch login activity:", error);
-    }
+    const res = await fetch(`http://localhost:5000/api/settings/login-activity/${userId}`);
+    const data = await res.json();
+    setLoginActivity(Array.isArray(data) ? data : []);
   };
 
   const updateReminders = async () => {
-    try {
-      const res = await fetch("http://localhost:5000/api/settings/reminders", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, reminders }),
-      });
-      const data = await res.json();
-      alert(data.message);
-    } catch (error) {
-      console.error("Failed to update reminders:", error);
-    }
+    const data = await putJson("http://localhost:5000/api/settings/reminders", { userId, reminders });
+    alert(data.message || "Saved");
   };
 
   const deleteAccount = async () => {
-    if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) return;
-    try {
-      const res = await fetch("http://localhost:5000/api/settings/delete", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        alert(data.message);
-        localStorage.removeItem("user");
-        navigate("/landing");
-      } else {
-        alert("Failed to delete account. Please try again.");
-      }
-    } catch (error) {
-      console.error("Failed to delete account:", error);
-      alert("An error occurred while deleting the account.");
-    }
+    if (!confirm("Delete account?")) return;
+    const res = await fetch("http://localhost:5000/api/settings/delete", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId }) });
+    const data = await res.json();
+    if (res.ok) {
+      alert(data.message || "Deleted");
+      localStorage.removeItem("user");
+      navigate("/landing");
+    } else alert(data.message || "Failed");
   };
 
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    if (file) {
-      setUploadedImage(file);
-      const reader = new FileReader();
-      reader.onload = () => {
-        setProfilePicture(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+  const onDrop = (files) => {
+    const f = files[0];
+    if (!f) return;
+    setUploadedImage(f);
+    const reader = new FileReader();
+    reader.onload = () => setProfilePicture(reader.result);
+    reader.readAsDataURL(f);
   };
 
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: { "image/*": [] },
-    multiple: false,
-  });
+  const { getRootProps, getInputProps } = useDropzone({ accept: { "image/*": [] }, multiple: false, onDrop });
 
-  return (
-    <div className="fixed top-4 right-4 z-50">
-      <aside className="w-80 h-[90vh] rounded-l-2xl overflow-hidden shadow-2xl bg-gradient-to-b from-slate-900 to-slate-800 text-white border-l-2 border-white/5 relative">
-        <div className="flex items-start justify-between p-4">
-          <div className="flex items-start gap-3">
-            <img
-              src={profilePicture || "/src/assets/default-profile.png"}
-              alt="avatar"
-              className="w-14 h-14 rounded-full border-2 border-white/10 object-cover"
-            />
-            <div>
-              <div className="text-lg font-semibold">{username}</div>
-              <button
-                onClick={() => navigate("/profile")}
-                className="text-xs text-gray-300 hover:text-white mt-1"
-              >
-                Edit profile &rarr;
-              </button>
-            </div>
+  // Portal the entire account panel so it sits above page content.
+  return createPortal(
+    <div className="fixed top-4 right-4 z-[9999]">
+      <aside className="w-72 h-auto rounded-l-2xl overflow-hidden shadow-lg bg-gradient-to-b from-slate-900 to-slate-800 text-white p-3">
+        <div className="flex items-center gap-3 mb-3">
+          <img src={profilePicture || "/src/assets/default-profile.png"} alt="avatar" className="w-12 h-12 rounded-full object-cover" />
+          <div>
+            <div className="font-semibold">{username}</div>
+            <div className="text-xs text-gray-300">ID: {userId}</div>
           </div>
-
-          <div className="flex flex-col items-end gap-2">
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-white mt-2"
-              aria-label="Close account panel"
-            >
-              ✖
-            </button>
-          </div>
+          <button onClick={onClose} className="ml-auto text-gray-400">✖</button>
         </div>
 
-        <div
-          ref={contentRef}
-          className="px-4 mt-2 overflow-y-auto"
-          style={{ maxHeight: "calc(90vh - 160px)" }}
-        >
-          <nav>
-            <ul className="space-y-1">
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/dashboard", { state: { openStreakModal: true } })}
-                >
-                  <span className="text-2xl">🕘</span>
-                  <span className="font-medium">Dashboard</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => setShowLeaderboard(true)}
-                >
-                  <span className="text-2xl">🏆</span>
-                  <span className="font-medium">Leaderboard</span>
-                </button>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="mt-4 border-t border-white/5 px-4 pt-4">
-            <button
-              className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-              onClick={() => setShowSettings(true)}
-            >
-              <span className="text-2xl">⚙️</span>
-              <span className="font-medium">Settings</span>
-            </button>
-          </div>
-
-          <div className="h-4" />
+        <div ref={contentRef} className="space-y-2 overflow-auto" style={{ maxHeight: "62vh" }}>
+          <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => navigate("/dashboard")}>🕘 Dashboard</button>
+          <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => setShowLeaderboard(true)}>🏆 Leaderboard</button>
+          <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => setShowSettings(true)}>⚙️ Settings</button>
         </div>
 
-        <div className="mt-auto px-4 pb-6 pt-4">
-          <button
-            onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-3 rounded-md bg-red-600 hover:bg-red-700 text-white font-semibold justify-start"
-          >
-            <span className="text-2xl">↩️</span>
-            <span>Log out</span>
-          </button>
+        <div className="mt-auto">
+          <button onClick={handleLogout} className="w-full bg-red-600 py-2 rounded mt-3">Log out</button>
         </div>
       </aside>
 
-      {showLeaderboard &&
+      {showLeaderboard && createPortal(<Leaderboard data={leaderboard} onClose={() => setShowLeaderboard(false)} userId={userId} />, document.body)}
+
+      {showSettings &&
         createPortal(
-          <Leaderboard data={leaderboard} onClose={() => setShowLeaderboard(false)} userId={userId} />,
+          <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-[10000]">
+            <div className="bg-gray-900 text-white rounded-2xl shadow-xl p-5 w-[420px]">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-bold">Settings</h3>
+                <button onClick={() => setShowSettings(false)} className="text-gray-400">✖</button>
+              </div>
+
+              <div className="space-y-3">
+                <div>
+                  <label className="block text-sm">Username</label>
+                  <input value={newUsername} onChange={(e) => setNewUsername(e.target.value)} className="w-full p-2 bg-gray-800 rounded" placeholder="New username" />
+                  <button onClick={updateUsername} className="mt-2 w-full bg-indigo-600 py-2 rounded">Update</button>
+                </div>
+
+                <div>
+                  <label className="block text-sm">Password</label>
+                  <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="w-full p-2 bg-gray-800 rounded" placeholder="New password" />
+                  <button onClick={updatePassword} className="mt-2 w-full bg-blue-600 py-2 rounded">Update</button>
+                </div>
+
+                <div>
+                  <label className="block text-sm">Profile Picture</label>
+                  <div {...getRootProps()} className="w-full p-3 bg-gray-800 rounded text-center cursor-pointer">
+                    <input {...getInputProps()} />
+                    {uploadedImage ? <img src={profilePicture} alt="preview" className="w-20 h-20 rounded-full mx-auto" /> : <span className="text-gray-400">Upload or drop image</span>}
+                  </div>
+                  <button onClick={updateProfilePicture} className="mt-2 w-full bg-purple-600 py-2 rounded">Save Picture</button>
+                </div>
+
+                <div>
+                  <label className="block text-sm">Reminders</label>
+                  <input value={reminders} onChange={(e) => setReminders(e.target.value)} className="w-full p-2 bg-gray-800 rounded" placeholder="e.g. Daily 8pm" />
+                  <button onClick={updateReminders} className="mt-2 w-full bg-green-600 py-2 rounded">Save</button>
+                </div>
+
+                <div>
+                  <button onClick={fetchLoginActivity} className="w-full bg-yellow-500 py-2 rounded">Show Login Activity</button>
+                  {loginActivity.length > 0 && (
+                    <ul className="mt-2 max-h-24 overflow-auto bg-gray-800 p-2 rounded text-sm">
+                      {loginActivity.map((l, i) => <li key={i}>🛰️ {l}</li>)}
+                    </ul>
+                  )}
+                </div>
+
+                <div className="border-t border-gray-700 pt-3">
+                  <button onClick={deleteAccount} className="w-full bg-red-600 py-2 rounded">Delete Account</button>
+                </div>
+              </div>
+            </div>
+          </div>,
           document.body
         )}
-
-      {showSettings && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
-          <div className="bg-gray-900 text-white rounded-2xl shadow-xl p-6 w-[420px] relative">
-            <button
-              onClick={() => setShowSettings(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl"
-            >
-              ✖
-            </button>
-
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">⚙️ Settings</h2>
-
-            <div className="flex items-center gap-4 mb-6">
-              <img
-                src={profilePicture || "/src/assets/default-profile.png"}
-                alt="Profile"
-                className="w-16 h-16 rounded-full border-2 border-gray-600 object-cover"
-              />
-              <div>
-                <p className="font-bold text-lg">{username}</p>
-                <p className="text-sm text-gray-400">User ID: {userId}</p>
-              </div>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm mb-1 font-medium">👤 Change Username</label>
-              <input
-                type="text"
-                className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-indigo-500 outline-none"
-                value={newUsername}
-                onChange={(e) => setNewUsername(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-indigo-500 px-4 py-2 rounded font-bold hover:bg-indigo-600"
-                onClick={updateUsername}
-              >
-                Update Username
-              </button>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm mb-1 font-medium">🔑 Change Password</label>
-              <input
-                type="password"
-                className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-blue-500 outline-none"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-blue-500 px-4 py-2 rounded font-bold hover:bg-blue-600"
-                onClick={updatePassword}
-              >
-                Update Password
-              </button>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm mb-1 font-medium">🖼️ Profile Picture</label>
-              <div
-                {...getRootProps()}
-                className="w-full p-4 rounded bg-gray-800 border border-gray-700 text-center cursor-pointer"
-              >
-                <input {...getInputProps()} />
-                {uploadedImage ? (
-                  <img
-                    src={profilePicture}
-                    alt="Uploaded Preview"
-                    className="w-24 h-24 object-cover rounded-full mx-auto"
-                  />
-                ) : (
-                  <p className="text-gray-400">Drag & drop an image here, or click to select</p>
-                )}
-              </div>
-              <button
-                className="mt-2 w-full bg-purple-500 px-4 py-2 rounded font-bold hover:bg-purple-600"
-                onClick={updateProfilePicture}
-              >
-                Update Picture
-              </button>
-            </div>
-
-            <div className="mb-5">
-              <label className="block text-sm mb-1 font-medium">📅 Learning Reminders</label>
-              <input
-                type="text"
-                className="w-full p-2 rounded bg-gray-800 border border-gray-700 focus:border-green-500 outline-none"
-                value={reminders}
-                onChange={(e) => setReminders(e.target.value)}
-              />
-              <button
-                className="mt-2 w-full bg-green-500 px-4 py-2 rounded font-bold hover:bg-green-600"
-                onClick={updateReminders}
-              >
-                Save Reminders
-              </button>
-            </div>
-
-            <div className="mb-6">
-              <button
-                className="w-full bg-yellow-500 px-4 py-2 rounded font-bold hover:bg-yellow-600"
-                onClick={fetchLoginActivity}
-              >
-                Show Login Activity
-              </button>
-              {loginActivity.length > 0 && (
-                <ul className="mt-3 space-y-2 max-h-32 overflow-y-auto text-sm bg-gray-800 p-3 rounded border border-gray-700">
-                  {loginActivity.map((log, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                      🛰️ <span>{log}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-
-            <div className="border-t border-gray-700 pt-4">
-              <h3 className="text-red-400 font-bold mb-2">⚠️ Danger Zone</h3>
-              <button
-                className="w-full bg-red-500 px-4 py-2 rounded font-bold hover:bg-red-600"
-                onClick={deleteAccount}
-              >
-                Delete Account
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+    </div>,
+    document.body
   );
 }
