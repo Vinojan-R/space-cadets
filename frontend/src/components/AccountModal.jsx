@@ -9,7 +9,6 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
-  // removed unused userRank state
 
   // Settings fields
   const [newUsername, setNewUsername] = useState("");
@@ -19,7 +18,7 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
   const [reminders, setReminders] = useState("");
 
   const [uploadedImage, setUploadedImage] = useState(null);
-  const contentRef = useRef(null); // keep ref if needed later
+  const contentRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
     fetch("http://localhost:5000/api/leaderboard")
       .then((res) => res.json())
       .then((data) => {
-        // keep leaderboard sorted desc by score
         const sorted = (data || []).sort((a, b) => (b.score || 0) - (a.score || 0));
         setLeaderboard(sorted);
       })
@@ -84,7 +82,7 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
 
       const data = await res.json();
       alert(data.message);
-      setProfilePicture(data.profilePictureUrl); // Update preview
+      setProfilePicture(data.profilePictureUrl);
     } catch (error) {
       console.error("Failed to update profile picture:", error);
     }
@@ -142,7 +140,7 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
       setUploadedImage(file);
       const reader = new FileReader();
       reader.onload = () => {
-        setProfilePicture(reader.result); // preview
+        setProfilePicture(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -153,12 +151,9 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
     multiple: false,
   });
 
-  // Sidebar-style account modal (matches image layout)
   return (
     <div className="fixed top-4 right-4 z-50">
-      {/* Panel */}
       <aside className="w-80 h-[90vh] rounded-l-2xl overflow-hidden shadow-2xl bg-gradient-to-b from-slate-900 to-slate-800 text-white border-l-2 border-white/5 relative">
-        {/* close button */}
         <div className="flex items-start justify-between p-4">
           <div className="flex items-start gap-3">
             <img
@@ -188,7 +183,6 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
           </div>
         </div>
 
-        {/* scrollable content (nav, billing, etc.) */}
         <div
           ref={contentRef}
           className="px-4 mt-2 overflow-y-auto"
@@ -215,84 +209,22 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
                   <span className="font-medium">Leaderboard</span>
                 </button>
               </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/tutorials")}
-                >
-                  <span className="text-2xl">💡</span>
-                  <span className="font-medium">Tutorials</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/bookmarks")}
-                >
-                  <span className="text-2xl">🔖</span>
-                  <span className="font-medium">Bookmarks</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/learning-paths")}
-                >
-                  <span className="text-2xl">🧭</span>
-                  <span className="font-medium">Learning Paths</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/courses")}
-                >
-                  <span className="text-2xl">🎓</span>
-                  <span className="font-medium">Courses</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/spaces")}
-                >
-                  <span className="text-2xl">🗂️</span>
-                  <span className="font-medium">Spaces</span>
-                </button>
-              </li>
-
-              <li>
-                <button
-                  className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-                  onClick={() => navigate("/certificates")}
-                >
-                  <span className="text-2xl">📜</span>
-                  <span className="font-medium">Certificates</span>
-                </button>
-              </li>
             </ul>
           </nav>
 
           <div className="mt-4 border-t border-white/5 px-4 pt-4">
             <button
               className="w-full flex items-center gap-3 px-3 py-3 rounded-md hover:bg-white/5 text-left"
-              onClick={() => navigate("/billing")}
+              onClick={() => setShowSettings(true)}
             >
               <span className="text-2xl">⚙️</span>
-              <span className="font-medium">Billing</span>
+              <span className="font-medium">Settings</span>
             </button>
           </div>
 
-          {/* spacer so logout stays visible at bottom when scrolled */}
           <div className="h-4" />
         </div>
 
-        {/* logout stays outside scrollable area so always visible */}
         <div className="mt-auto px-4 pb-6 pt-4">
           <button
             onClick={handleLogout}
@@ -304,14 +236,12 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
         </div>
       </aside>
 
-      {/* Leaderboard modal */}
       {showLeaderboard &&
         createPortal(
           <Leaderboard data={leaderboard} onClose={() => setShowLeaderboard(false)} userId={userId} />,
           document.body
         )}
 
-      {/* Settings modal (kept as floating window to edit) */}
       {showSettings && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
           <div className="bg-gray-900 text-white rounded-2xl shadow-xl p-6 w-[420px] relative">
@@ -439,8 +369,6 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
           </div>
         </div>
       )}
-
-      
     </div>
   );
 }

@@ -39,31 +39,40 @@ export default function SearchBar({ data }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     const value = e.target.value;
     setQuery(value);
 
     if (value.trim()) {
-      const filteredSuggestions = data
-        .filter((item) =>
-          item.name.toLowerCase().includes(value.toLowerCase())
-        )
-        .map((item) => item.name);
-      setSuggestions(filteredSuggestions.slice(0, 5));
-      setIsActive(true);
+      try {
+        const res = await fetch(
+          `/api/search/suggestions?q=${encodeURIComponent(value)}`
+        );
+        const json = await res.json();
+        const names = Array.isArray(json) ? json.map((item) => item.name) : [];
+        setSuggestions(names.slice(0, 5));
+        setIsActive(true);
+      } catch (err) {
+        console.error("Suggestion fetch error:", err);
+      }
     } else {
       setSuggestions([]);
       setIsActive(false);
     }
   };
 
-  const handleResultSearch = (overrideQuery) => {
+  const handleResultSearch = async (overrideQuery) => {
     const q = overrideQuery ?? query;
-    const filteredResults = data.filter((item) =>
-      item.name.toLowerCase().includes(q.toLowerCase())
-    );
-    setResults(filteredResults);
-    setIsActive(true);
+    if (!q.trim()) return;
+
+    try {
+      const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+      const dataJson = await res.json();
+      setResults(Array.isArray(dataJson) ? dataJson : []);
+      setIsActive(true);
+    } catch (err) {
+      console.error("Search fetch error:", err);
+    }
   };
 
   // Voice toggle

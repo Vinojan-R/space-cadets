@@ -45,3 +45,7 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
+
+
+import searchRoutes from "./routes/searchRoutes.js";
+app.use("/api/search", searchRoutes);
