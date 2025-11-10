@@ -91,19 +91,24 @@ export default function EarthPage() {
 							</p>
 						</div>
 						
-						{/* Colorful quick facts */}
-						<div className="grid grid-cols-2 gap-4 mt-6">
-							<div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-								<p className="font-bold">🌡️ Perfect Temperature</p>
-							</div>
-							<div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-								<p className="font-bold">💧 71% Water</p>
-							</div>
-							<div className="bg-gradient-to-r from-green-600 to-emerald-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-								<p className="font-bold">🌱 Full of Life</p>
-							</div>
-							<div className="bg-gradient-to-r from-orange-600 to-red-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
-								<p className="font-bold">🌋 Active Geology</p>
+						{/* Colorful quick facts with Tamil heading */}
+						<div className="mb-8">
+							<h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-cyan-400 to-green-400 bg-clip-text text-transparent">
+								Earth's Special Features
+							</h2>
+							<div className="grid grid-cols-2 gap-4 mt-6">
+								<div className="bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
+									<p className="font-bold">🌡️ Perfect Temperature</p>
+								</div>
+								<div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
+									<p className="font-bold">💧 71% Water</p>
+								</div>
+								<div className="bg-gradient-to-r from-green-600 to-emerald-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
+									<p className="font-bold">🌱 Full of Life</p>
+								</div>
+								<div className="bg-gradient-to-r from-orange-600 to-red-600 p-4 rounded-xl shadow-lg transform hover:scale-105 transition duration-300">
+									<p className="font-bold">🌋 Active Geology</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -126,22 +131,23 @@ export default function EarthPage() {
 					<h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">🌱 Why is Earth Special?</h2>
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 						<div className="bg-gradient-to-br from-green-600/50 to-emerald-700/50 p-6 rounded-2xl shadow-lg border border-green-400/30 transform hover:scale-105 transition duration-300">
-							<p className="text-lg font-semibold">💧 It has water to drink and oceans full of life.</p>
+							<p className="text-lg font-semibold">🌊 Earth has water to drink and big oceans with many living things </p>
 						</div>
 						<div className="bg-gradient-to-br from-blue-600/50 to-cyan-700/50 p-6 rounded-2xl shadow-lg border border-blue-400/30 transform hover:scale-105 transition duration-300">
-							<p className="text-lg font-semibold">🌬️ It has air for us to breathe.</p>
+							<p className="text-lg font-semibold">🌬️ It has air that we can breathe</p>
 						</div>
 						<div className="bg-gradient-to-br from-yellow-600/50 to-orange-600/50 p-6 rounded-2xl shadow-lg border border-yellow-400/30 transform hover:scale-105 transition duration-300">
-							<p className="text-lg font-semibold">🌞 It gets just the right amount of sunlight.</p>
+							<p className="text-lg font-semibold">🌞 It gets just the right amount of sunlight</p>
 						</div>
 						<div className="bg-gradient-to-br from-purple-600/50 to-pink-600/50 p-6 rounded-2xl shadow-lg border border-purple-400/30 transform hover:scale-105 transition duration-300">
-							<p className="text-lg font-semibold">🌿 It grows plants, trees, and flowers everywhere.</p>
+							<p className="text-lg font-semibold">🌿 It grows plants, trees, and flowers everywhere</p>
 						</div>
 						<div className="bg-gradient-to-br from-pink-600/50 to-red-600/50 p-6 rounded-2xl shadow-lg border border-pink-400/30 transform hover:scale-105 transition duration-300">
-							<p className="text-lg font-semibold">🐾 It's home to animals and humans alike.</p>
+							<p className="text-lg font-semibold">🐾 Animals and people live happily on Earth together  </p>
+
 						</div>
 						<div className="bg-gradient-to-br from-indigo-600/50 to-purple-700/50 p-6 rounded-2xl shadow-lg border border-indigo-400/30 transform hover:scale-105 transition duration-300">
-							<p className="text-lg font-semibold">🌈 It has colorful weather — from rainbows to snow!</p>
+							<p className="text-lg font-semibold">🌈 It has colorful weather</p>
 						</div>
 					</div>
 				</section>
@@ -174,26 +180,29 @@ export default function EarthPage() {
 				</section>
 
 				{/* 🌕 Moon & Space Fun */}
-				<section className="max-w-4xl bg-gradient-to-br from-gray-800/70 to-purple-900/50 rounded-2xl p-8 shadow-2xl border border-purple-400/30">
-					<h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">🌕 The Moon and Space</h2>
-					<p className="text-gray-200 text-xl leading-relaxed">
-						The <span className="text-yellow-300 font-bold">Moon</span> is Earth's closest friend in space! 🌙  
-						It goes around Earth once every 27 days and makes the night sky glow.  
-						The Moon helps control ocean tides 🌊 and makes our nights beautiful.  
-						Look up at night  you might even see a <span className="text-pink-300 font-bold">Full Moon!</span> 🌕
-					</p>
-				</section>
+<section className="max-w-4xl bg-gradient-to-br from-gray-800/70 to-purple-900/50 rounded-2xl p-8 shadow-2xl border border-purple-400/30">
+  <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+    🌕 The Moon and Space
+  </h2>
+  <p className="text-gray-200 text-xl leading-relaxed">
+    Our <span className="text-yellow-300 font-bold">Earth</span> is best friends with the <span className="text-pink-300 font-bold">Moon</span> in space! 🌙  
+    It orbits Earth once every <span className="text-yellow-300 font-bold">27 days</span> and causes the night sky to shine.  
+    The Moon helps to control ocean tides 🌊 and it beautifies our nights.  
+    And if you look up at night, maybe a <span className="text-pink-300 font-bold">Full Moon</span> will shine down upon you as well! 🌕
+  </p>
+</section>
+
 
 				{/* ♻️ Protect the Earth */}
 				<section className="max-w-4xl bg-gradient-to-br from-green-900/60 to-emerald-900/50 rounded-2xl p-8 shadow-2xl border border-green-400/40">
 					<h2 className="text-4xl font-bold mb-6 text-green-300">♻️ How Can We Protect Earth?</h2>
 					<ul className="text-left grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-200 text-lg">
-						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🌳 Plant more trees — they clean the air.</li>
-						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🚯 Don't throw trash on the ground — keep our planet clean.</li>
-						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">💧 Save water — every drop counts!</li>
-						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🔌 Turn off lights when you're not using them.</li>
-						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🚲 Walk or ride a bicycle to reduce pollution.</li>
-						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🌱 Support renewable energy sources.</li>
+						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🌳 Plant more trees</li>
+						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🚯 Don't throw trash on the ground</li>
+						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">💧 Save water</li>
+						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🔌 Turn off lights when you're not using them</li>
+						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🚲 Walk or ride a bicycle to reduce pollution</li>
+						<li className="bg-green-700/40 p-4 rounded-xl border border-green-500/30">🌱 Support renewable energy sources</li>
 					</ul>
 				</section>
 
