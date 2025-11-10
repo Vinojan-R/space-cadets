@@ -13,8 +13,9 @@ import StarConstellationPage from "./pages/StarConstellationPage";
 import NewTechnologiesPage from "./pages/NewTechnologiesPage";
 import KnownGalaxiesPage from "./pages/KnownGalaxiesPage";
 import GamePage from "./pages/GamePage";
-import VideosPage from "./pages/VideosPage"; // Add this import
-import SuccessPage from "./pages/SuccessPage"; // Import the SuccessPage component
+import VideosPage from "./pages/VideosPage";
+import SuccessPage from "./pages/SuccessPage";
+import Aboutpage from "./pages/Aboutpage"; // ADDED: import About page
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -56,6 +57,9 @@ function App() {
         {/* Home page */}
         <Route path="/home" element={isLoggedIn ? <HomePage /> : <Navigate to="/" />} />
 
+        {/* About page */}
+        <Route path="/about" element={<Aboutpage />} />
+
         {/* Sun page */}
         <Route path="/sun" element={<SunPage />} />
 
@@ -84,13 +88,13 @@ function App() {
         <Route path="/games" element={<GamePage />} />
 
         {/* Videos page */}
-        <Route path="/videos" element={<VideosPage />} /> {/* Add this route */}
+        <Route path="/videos" element={<VideosPage />} />
 
         {/* Success page */}
-        <Route path="/success" element={<SuccessPage />} /> {/* Add this route */}
+        <Route path="/success" element={<SuccessPage />} />
 
         {/* Login page */}
-        <Route path="/login" element={<LoginPage />} /> {/* Ensure this route exists */}
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
