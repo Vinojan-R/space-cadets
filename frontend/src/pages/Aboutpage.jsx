@@ -27,7 +27,7 @@ export default function Aboutpage() {
               🪐 Who We Are
             </h2>
             <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
-              Space Kits is a university project promoting space knowledge and
+             space cadets is a university project promoting space knowledge and
               innovation among students and enthusiasts.
             </p>
           </div>
@@ -49,7 +49,7 @@ export default function Aboutpage() {
               🌠 Mission
             </h2>
             <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
-             Our mission is to make space education fun and easy for Space Kits through creative and engaging learning.
+             Our mission is to make space education fun and easy for space cadets through creative and engaging learning.
             </p>
           </div>
 
