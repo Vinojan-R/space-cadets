@@ -213,7 +213,7 @@ export default function NewTechnologiesPage() {
 				{/* Edit */}
 
 
-  <div className="flex flex-col items-center justify-center  text-cyan-300 p-8">
+  <div className="flex flex-col items-center justify-center  text-white p-8">
   {/* Animated Title */}
   <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-glow text-center">
     🚀 New Space Technology
@@ -366,7 +366,7 @@ export default function NewTechnologiesPage() {
       />
 
       {/* Title */}
-      <h1 className="text-4xl font-bold text-cyan-300 mb-8 text-center">
+      <h1 className="text-4xl font-bold text-white mb-8 text-center">
         🚀 New Space Technologies
       </h1>
 
