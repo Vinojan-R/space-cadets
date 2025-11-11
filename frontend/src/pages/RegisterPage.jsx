@@ -75,13 +75,22 @@ export default function RegisterPage() {
     localStorage.setItem("username", username);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", newUser);
+      const res = await axios.post("http://localhost:5000/api/auth/register", {
+        firstName,
+        lastName,
+        dob,
+        username,
+        password,
+      });
       console.log("Registration response:", res);
-      if (res.status !== 200) throw new Error();
-      alert(`🎉 Account created successfully!\nYour username is: ${username}`);
-      navigate("/success");
+      if (res.status !== 200) {
+        // setError("❌ Registration failed. Please try again.");
+        alert(`🎉 Account created successfully!\nYour username is: ${username}`);
+        navigate("/success");
+      }
     } catch (err) {
-      setError("❌ Registration failed. Please try again.");
+      setError("❌ Registration  sunnn failed. Please try again.");
+      console.log(err)
     }
   };
 
