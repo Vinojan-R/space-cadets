@@ -5,11 +5,11 @@ import Footer from "../components/Footer";
 import SearchBar from "../components/SearchBar";
 import SpaceBackground from "../components/SpaceBackground"; 
 import SunHero from "../assets/sun.jpg";
-import orion from "../assets/orion.png";
-import solarorbiter from "../assets/solarorbiter.png";
+import yellow from "../assets/yellow.png";
+import greensun from "../assets/greensun.png";
 import smilingsun from "../assets/smilingsun.png";
-// Remove the problematic import:
 import rotatesun from "../assets/rotatesun.mp4";
+import sunheat from "../assets/sunheat.png";
 
 const sunFacts = [
   {
@@ -196,30 +196,25 @@ export default function SunPage() {
             {/* Important events */}
             <div>
               <h2 className="text-4xl font-bold text-yellow-400 mb-2">Sun Galleries</h2>
-              <p className="text-lg font-semibold text-gray-300 mb-4 uppercase">The Main News For Today</p>
               <p className="text-gray-400 mb-10">
-                For almost three years, the only seismic waves that NASA's InSight recorded were those propagated from the deep
-                interior of Mars. However, on December 24, 2021, a meteorite impact on Mars caused unique waves that spread across
-                the planet's surface offering new insights into its structure.
+              Stay up-to-date with the latest content about the Sun from photojournal...
               </p>
 
               {/* Image cards grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
                   <img
-                    src={orion}
+                    src={yellow}
                     alt="NASA prepares Orion capsules"
                     className="w-full h-40 object-cover"
                   />
-                  <p className="p-3 text-sm text-center text-gray-300">NASA prepares Orion capsules</p>
                 </div>
                 <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
                   <img
-                    src={solarorbiter}
+                    src={greensun}
                     alt="Solar Orbiter"
                     className="w-full h-40 object-cover"
                   /> 
-                  <p className="p-3 text-sm text-center text-gray-300">Solar Orbiter</p>
                 </div>
                 <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
                   <img
@@ -227,17 +222,13 @@ export default function SunPage() {
                     alt="Smiling Sun"
                     className="w-full h-40 object-cover"
                   />
-                  <p className="p-3 text-sm text-center text-gray-300">Smiling Sun</p>
                 </div>
                 <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
                   <img
-                    src={orion}
+                    src={sunheat}
                     alt="Scientists research"
                     className="w-full h-40 object-cover"
                   />
-                  <p className="p-3 text-sm text-center text-gray-300">
-                    Scientists from ETH Zurich analyzed the measurements
-                  </p>
                 </div>
               </div>
             </div>
