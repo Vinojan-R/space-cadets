@@ -75,7 +75,8 @@ export default function RegisterPage() {
     localStorage.setItem("username", username);
 
     try {
-      const res = await axios.post("http://localhost:5000/api/register", newUser);
+      const res = await axios.post("http://localhost:5000/api/auth/register", newUser);
+      console.log("Registration response:", res);
       if (res.status !== 200) throw new Error();
       alert(`🎉 Account created successfully!\nYour username is: ${username}`);
       navigate("/success");

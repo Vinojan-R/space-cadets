@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { useDropzone } from "react-dropzone";
 import Leaderboard from "./Leaderboard";
+import DashBoard from "./DashBoard";
 
 export default function AccountModal({ username, userId, onClose, onLogout }) {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [leaderboard, setLeaderboard] = useState([]);
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -106,7 +108,7 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
         </div>
 
         <div ref={contentRef} className="space-y-2 overflow-auto" style={{ maxHeight: "62vh" }}>
-          <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => navigate("/dashboard")}>🕘 Dashboard</button>
+          <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => setShowDashboard(true)}>🕘 Dashboard</button>
           <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => setShowLeaderboard(true)}>🏆 Leaderboard</button>
           <button className="w-full text-left px-3 py-2 rounded hover:bg-white/5" onClick={() => setShowSettings(true)}>⚙️ Settings</button>
         </div>
@@ -115,6 +117,15 @@ export default function AccountModal({ username, userId, onClose, onLogout }) {
           <button onClick={handleLogout} className="w-full bg-red-600 py-2 rounded mt-3">Log out</button>
         </div>
       </aside>
+
+      {showDashboard && createPortal(
+        <div className="fixed inset-0 flex items-start justify-end p-6 pointer-events-none z-[11000]">
+          <div className="pointer-events-auto">
+            <DashBoard userId={userId} onClose={() => setShowDashboard(false)} />
+          </div>
+        </div>,
+        document.body
+      )}
 
       {showLeaderboard && createPortal(<Leaderboard data={leaderboard} onClose={() => setShowLeaderboard(false)} userId={userId} />, document.body)}
 
