@@ -8,15 +8,14 @@ import SunHero from "../assets/sun.jpg";
 import orion from "../assets/orion.png";
 import solarorbiter from "../assets/solarorbiter.png";
 import smilingsun from "../assets/smilingsun.png";
-// nuha test
-
-
+// Remove the problematic import:
+import rotatesun from "../assets/rotatesun.mp4";
 
 const sunFacts = [
   {
     name: "Sun",
     description:
-      "The Sun is the star at the center of our solar system. It provides light and heat necessary for life on Earth. It makes up 99.8% of the solar system’s mass!",
+      "The Sun is the star at the center of our solar system. It provides light and heat necessary for life on Earth. It makes up 99.8% of the solar system's mass!",
   },
   {
     name: "Solar Energy",
@@ -107,11 +106,11 @@ export default function SunPage() {
         <main className="flex-grow flex flex-col items-center px-6 relative z-10">
           {/* 🌞 Hero Section with Background Image + Blend */}
           <section className="relative w-full">
-          <div
-    className="relative flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-6xl py-20 mx-auto
-        bg-cover bg-center bg-no-repeat bg-blend-overlay bg-black/50"
-    style={{ backgroundImage: `url(${SunHero})`}}
-  >
+            <div
+              className="relative flex flex-col md:flex-row items-center justify-center gap-12 w-full max-w-6xl py-20 mx-auto
+                bg-cover bg-center bg-no-repeat bg-blend-overlay bg-black/50"
+              style={{ backgroundImage: `url(${SunHero})`}}
+            >
               
               {/* Gradient fade to blend bottom into page */}
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black"></div>
@@ -121,294 +120,211 @@ export default function SunPage() {
                   ☀️ The Sun
                 </h1>
                 <p className="text-lg md:text-xl text-gray-200 drop-shadow">
-                  The Sun provides energy, light, and warmth that makes life possible on Earth.
-                  Explore its layers, structure, and amazing phenomena!
+                  The Sun is the star at the heart of our solar system. Its gravity holds the solar system together, keeping everything from the biggest planets to the smallest bits of debris in its orbit.
                 </p>
               </div>
             </div>
           </section>
 
-    {/* --- Info Section: Like the screenshot --- */}
-<section className="relative z-10 py-16 w-full max-w-6xl mx-auto px-6">
-  {/* Header icons */}
-  <div className="flex flex-wrap justify-center gap-8 mb-10 text-sm text-gray-300">
-    <div className="flex items-center gap-3 max-w-[180px]">
-      <span className="text-yellow-400 text-2xl">☀️</span>
-      <p>The center of our system</p>
-    </div>
+          {/* --- Info Section: Like the screenshot --- */}
+          <section className="relative z-10 py-16 w-full max-w-6xl mx-auto px-6">
+            {/* Header icons */}
+            <div className="flex flex-wrap justify-center gap-8 mb-10 text-sm text-gray-300">
+              <div className="flex items-center gap-3 max-w-[180px]">
+                <span className="text-yellow-400 text-2xl">☀️</span>
+                <p>The center of our system</p>
+              </div>
 
-    <div className="flex items-center gap-3 max-w-[180px]">
-      <span className="text-yellow-400 text-2xl">🌌</span>
-      <p>An important part of the cosmos</p>
-    </div>
+              <div className="flex items-center gap-3 max-w-[180px]">
+                <span className="text-yellow-400 text-2xl">🌌</span>
+                <p>An important part of the cosmos</p>
+              </div>
 
-    <div className="flex items-center gap-3 max-w-[180px]">
-      <span className="text-yellow-400 text-2xl">🔭</span>
-      <p>Constantly being studied</p>
-    </div>
+              <div className="flex items-center gap-3 max-w-[180px]">
+                <span className="text-yellow-400 text-2xl">🔭</span>
+                <p>Constantly being studied</p>
+              </div>
 
-    <div className="flex items-center gap-3 max-w-[180px]">
-      <span className="text-yellow-400 text-2xl">🌦️</span>
-      <p>Affects the weather</p>
-    </div>
-  </div>
-
-  {/* Main content + stats side by side */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 items-center">
-    {/* LEFT COLUMN - Main description with scroll */}
-    <div className="text-gray-200 space-y-4 overflow-y-auto h-64 pr-4  rounded-lg scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-yellow-800">
-      <h2 className="text-3xl font-bold text-yellow-400 tracking-widest uppercase top-0 bg-black/70 py-1">
-        THE MAIN
-      </h2>
-      <p>
-        There are many fascinating facts about the Sun — our life-giving star. Entire
-        scientific journals and countless research papers explore its energy,
-        composition, and mysteries that still remain unsolved.
-      </p>
-      <p>
-        The Sun’s surface, known as the photosphere, is not solid but rather a layer
-        of gas about 500 kilometers thick. It glows brightly because of the
-        incredible heat produced by nuclear fusion occurring deep in its core.
-      </p>
-      <p>
-        In this section, you’ll learn in simple terms how our main star — the Sun —
-        works, and why it is the most important celestial body for life on Earth.
-      </p>
-      <p>
-        Every second, the Sun converts about 600 million tons of hydrogen into helium,
-        releasing energy that sustains all life on our planet.
-      </p>
-      <p>
-        The Sun may seem constant, but it’s actually in continuous motion — rotating,
-        flaring, and shaping the space environment around it. Its magnetic activity
-        drives solar storms and auroras on Earth.
-      </p>
-      <p>
-        Scientists use advanced telescopes and spacecraft to monitor solar activity,
-        helping to protect satellites and communication systems from solar radiation.
-      </p>
-      <p>
-        Understanding the Sun helps us understand every star in the universe — from
-        their birth to their final stages as white dwarfs, neutron stars, or black
-        holes.
-      </p>
-    </div>
-
-    {/* RIGHT COLUMN - Stats */}
-    <div className="grid grid-cols-2 gap-8 text-center md:text-right">
-      <div>
-        <h3 className="text-5xl font-bold text-yellow-400">4.6</h3>
-        <p className="text-gray-400 text-sm uppercase">Billion Years Old</p>
-      </div>
-      <div>
-        <h3 className="text-5xl font-bold text-yellow-400">250</h3>
-        <p className="text-gray-400 text-sm uppercase">Million Years (Revolution)</p>
-      </div>
-      <div>
-        <h3 className="text-5xl font-bold text-yellow-400">110×</h3>
-        <p className="text-gray-400 text-sm uppercase">Larger Than Earth</p>
-      </div>
-      <div>
-        <h3 className="text-5xl font-bold text-yellow-400">15</h3>
-        <p className="text-gray-400 text-sm uppercase">Million °C Core Temp</p>
-      </div>
-    </div>
-  </div>
-
-
-  {/* Important events */}
-  <div>
-    <h2 className="text-2xl font-bold text-yellow-400 mb-2 uppercase">Important Events</h2>
-    <p className="text-lg font-semibold text-gray-300 mb-4 uppercase">The Main News For Today</p>
-    <p className="text-gray-400 mb-10">
-      For almost three years, the only seismic waves that NASA's InSight recorded were those propagated from the deep
-      interior of Mars. However, on December 24, 2021, a meteorite impact on Mars caused unique waves that spread across
-      the planet’s surface — offering new insights into its structure.
-    </p>
-
-    {/* Image cards grid */}
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
-      <img
-        src={orion} // Use the imported variable
-        alt="NASA prepares Orion capsules"
-        className="w-full h-40 object-cover"
-      />
-        <p className="p-3 text-sm text-center text-gray-300">NASA prepares Orion capsules</p>
-      </div>
-      <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
-      <img
-        src={solarorbiter} // Use the imported variable
-        alt="NASA prepares Orion capsules"
-        className="w-full h-40 object-cover"
-      /> 
-        <p className="p-3 text-sm text-center text-gray-300">Solar Orbiter</p>
-      </div>
-      <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
-      <img
-        src={smilingsun} // Use the imported variable
-        alt="NASA prepares Orion capsules"
-        className="w-full h-40 object-cover"
-      />
-        <p className="p-3 text-sm text-center text-gray-300">Smiling Sun</p>
-      </div>
-      <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
-      <img
-        src={orion} // Use the imported variable
-        alt="NASA prepares Orion capsules"
-        className="w-full h-40 object-cover"
-      />
-        <p className="p-3 text-sm text-center text-gray-300">
-          Scientists from ETH Zurich analyzed the measurements
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
- {/* --- Relative to the Earth Section (Image Left, Text Right) --- */}
-<section className="relative z-10 py-20 w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-  
-  {/* LEFT SIDE - Image & Data */}
-  <div className="relative flex justify-center items-center order-1 md:order-1">
-    {/* Background glow */}
-    <div className="absolute w-80 h-80 bg-yellow-500/20 blur-3xl rounded-full"></div>
-
-    {/* Main image */}
-    <img
-      src="space-cadets/frontend/src/pages/SunPage.jsx"
-      alt="Sun and Earth"
-      className="relative z-10 w-full max-w-md rounded-full object-cover shadow-lg"
-    />
-
-    {/* Overlayed text data */}
-    <div className="absolute bottom-8 left-4 text-gray-200 text-sm">
-      <p className="uppercase tracking-wide text-yellow-400 font-semibold">
-        The Average Distance From Earth
-      </p>
-      <p>is 1.496×10¹¹ m (8.31 light-minutes)</p>
-      <p>1 A.U.</p>
-    </div>
-
-    <div className="absolute top-6 right-4 text-right text-gray-200 text-sm">
-      <p className="uppercase tracking-wide text-yellow-400 font-semibold">
-        The Mass of the Sun
-      </p>
-      <p>M☉ = (1.98847 ± 0.00007) × 10³⁰ kg</p>
-      <p>99.86% of the total mass of the Solar System</p>
-    </div>
-  </div>
-
-  {/* RIGHT SIDE - Text Content */}
-  <div className="text-gray-200 space-y-5 order-2 md:order-2">
-    <h2 className="text-3xl font-bold text-yellow-400 tracking-widest uppercase">
-      Relative to the Earth
-    </h2>
-    <p>
-      According to the spectral classification, the Sun belongs to the 
-      <span className="text-yellow-400 font-semibold"> G2V type (yellow dwarf)</span>.
-    </p>
-    <p>
-      The average density of the Sun is 
-      <span className="text-yellow-400 font-semibold"> 1.4 g/cm³</span>, which is about 1.4 times that of water.
-    </p>
-    <p>
-      The effective surface temperature of the Sun is approximately 
-      <span className="text-yellow-400 font-semibold"> 5780 Kelvin</span>, radiating immense energy that sustains life on Earth.
-    </p>
-
-    {/* Small icons info */}
-    <div className="grid grid-cols-2 gap-6 pt-6 text-sm text-gray-300">
-      <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-orange-400/10 transition-all duration-300">
-        <span className="text-yellow-400 text-2xl">🌘</span>
-        <div>
-          <h3 className="text-yellow-400 font-semibold">Eclipses</h3>
-          <p className="leading-tight">Visible from Earth</p>
-        </div>
-      </div>
-
-      <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-orange-400/10 transition-all duration-300">
-        <span className="text-yellow-400 text-2xl">🌐</span>
-        <div>
-          <h3 className="text-yellow-400 font-semibold">Solar System</h3>
-          <p className="leading-tight">Part of cosmic web</p>
-        </div>
-      </div>
-
-      <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-orange-400/10 transition-all duration-300">
-        <span className="text-yellow-400 text-2xl">🛰️</span>
-        <div>
-          <h3 className="text-yellow-400 font-semibold">Satellites</h3>
-          <p className="leading-tight">Orbit and study the Sun</p>
-        </div>
-      </div>
-
-      <div className="flex items-start gap-3 p-3 rounded-xl hover:bg-orange-400/10 transition-all duration-300">
-        <span className="text-yellow-400 text-2xl">⚡</span>
-        <div>
-          <h3 className="text-yellow-400 font-semibold">Energy Source</h3>
-          <p className="leading-tight">Powers life and industry</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-
-          {/* Tabs Section */}
-          <section className="mt-8 w-full max-w-4xl">
-            <div className="flex justify-center gap-6 border-b border-gray-600">
-              {["overview", "layers", "importance", "fun"].map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  className={`pb-2 text-lg capitalize ${
-                    tab === t
-                      ? "text-yellow-400 border-b-2 border-yellow-400 font-semibold drop-shadow"
-                      : "text-gray-400"
-                  } transition`}
-                >
-                  {t}
-                </button>
-              ))}
+              <div className="flex items-center gap-3 max-w-[180px]">
+                <span className="text-yellow-400 text-2xl">🌦️</span>
+                <p>Affects the weather</p>
+              </div>
             </div>
-            <div className="mt-6 text-gray-200 text-center md:text-left space-y-4">
-              {tab === "overview" && (
+
+            {/* Main content + stats side by side */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20 items-center">
+              {/* LEFT COLUMN - Main description with scroll */}
+              <div className="text-gray-200 space-y-4 overflow-y-auto h-40 pr-4 rounded-lg scrollbar-thin scrollbar-thumb-blue-200 scrollbar-track-yellow-800">
+                <h2 className="text-3xl font-bold text-yellow-400 tracking-widest uppercase top-0 bg-black/70 py-1">
+                  THE MAIN
+                </h2>
                 <p>
-                  The Sun is a massive sphere of hot plasma composed mainly of hydrogen and helium. Its gravity keeps planets in orbit, and it generates energy through <strong>nuclear fusion</strong>.
+                The Sun's gravity holds the solar system together, keeping everything from the biggest planets to the smallest particles of debris in its orbit. The connection and interactions between the Sun and Earth drive the seasons, ocean currents, weather, climate, radiation belts and auroras. Though it is special to us, there are billions of stars like our Sun scattered across the Milky Way galaxy.
+                The Sun has many names in many cultures. The Latin word for Sun is “sol,” which is the main adjective for all things Sun-related:solar.
+                The Sun has inspired us since ancient times. 
                 </p>
-              )}
-              {tab === "layers" && (
-                <ul className="list-disc ml-6 space-y-2">
-                  <li><strong>Core:</strong> Fusion occurs here, producing enormous energy.</li>
-                  <li><strong>Radiative Zone:</strong> Energy slowly moves outward via radiation.</li>
-                  <li><strong>Convective Zone:</strong> Hot plasma circulates, transporting energy to the surface.</li>
-                  <li><strong>Photosphere:</strong> Visible surface emitting light.</li>
-                  <li><strong>Chromosphere:</strong> Red-colored layer above the surface.</li>
-                  <li><strong>Corona:</strong> Outer atmosphere, visible during solar eclipses.</li>
-                </ul>
-              )}
-              {tab === "importance" && (
-                <p>
-                  The Sun provides light and warmth, drives weather and ocean currents, and powers photosynthesis. Without it, Earth would be lifeless and frozen.
+
+                <p>It’s central to mythology and religion in cultures around the world, including the ancient Egyptians, the Aztecs of Mexico, Native American tribes of North and South America, the Chinese, and many others.
+                Countless musicians have written songs about the Sun. The Beatles had a hit in 1969 with “Here Comes the Sun”.</p>
+              
+                <p>Other popular songs that reference the Sun include: "Walkin" on the Sun” by Smashmouth; “Ain’t No Sunshine” by Bill Withers; “Walking on Sunshine” by Katrina and the Waves; “Pocketful of Sunshine” by Natasha Bedingfield; and “Let the Sunshine In” by the Fifth Dimension.
+                If you're Superman or a fellow Kryptonian of comic book fame, your powers are heightened by the yellow glow of our Sun. There are several science fiction films featuring the Sun in the storyline.
                 </p>
-              )}
-              {tab === "fun" && (
-                <p>
-                  Fun Fact: The Sun is so massive that about 1.3 million Earths could fit inside it! Its gravity influences the orbits of all planets.
-                </p>
-              )}
+              </div>
+
+              {/* RIGHT COLUMN - Stats */}
+              <div className="grid grid-cols-2 gap-8 text-center md:text-right">
+                <div>
+                  <h3 className="text-5xl font-bold text-yellow-400">4.6</h3>
+                  <p className="text-gray-400 text-sm uppercase">Billion Years Old</p>
+                </div>
+                <div>
+                  <h3 className="text-5xl font-bold text-yellow-400">250</h3>
+                  <p className="text-gray-400 text-sm uppercase">Million Years (Revolution)</p>
+                </div>
+                <div>
+                  <h3 className="text-5xl font-bold text-yellow-400">110×</h3>
+                  <p className="text-gray-400 text-sm uppercase">Larger Than Earth</p>
+                </div>
+                <div>
+                  <h3 className="text-5xl font-bold text-yellow-400">15</h3>
+                  <p className="text-gray-400 text-sm uppercase">Million °C Core Temp</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Important events */}
+            <div>
+              <h2 className="text-4xl font-bold text-yellow-400 mb-2">Sun Galleries</h2>
+              <p className="text-lg font-semibold text-gray-300 mb-4 uppercase">The Main News For Today</p>
+              <p className="text-gray-400 mb-10">
+                For almost three years, the only seismic waves that NASA's InSight recorded were those propagated from the deep
+                interior of Mars. However, on December 24, 2021, a meteorite impact on Mars caused unique waves that spread across
+                the planet's surface offering new insights into its structure.
+              </p>
+
+              {/* Image cards grid */}
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
+                  <img
+                    src={orion}
+                    alt="NASA prepares Orion capsules"
+                    className="w-full h-40 object-cover"
+                  />
+                  <p className="p-3 text-sm text-center text-gray-300">NASA prepares Orion capsules</p>
+                </div>
+                <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
+                  <img
+                    src={solarorbiter}
+                    alt="Solar Orbiter"
+                    className="w-full h-40 object-cover"
+                  /> 
+                  <p className="p-3 text-sm text-center text-gray-300">Solar Orbiter</p>
+                </div>
+                <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
+                  <img
+                    src={smilingsun}
+                    alt="Smiling Sun"
+                    className="w-full h-40 object-cover"
+                  />
+                  <p className="p-3 text-sm text-center text-gray-300">Smiling Sun</p>
+                </div>
+                <div className="bg-white/10 rounded-xl overflow-hidden hover:scale-105 transition">
+                  <img
+                    src={orion}
+                    alt="Scientists research"
+                    className="w-full h-40 object-cover"
+                  />
+                  <p className="p-3 text-sm text-center text-gray-300">
+                    Scientists from ETH Zurich analyzed the measurements
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
-         
+          {/* --- Relative to the Earth Section (Video Left, Text Right) --- */}
+          <section className="relative z-10 py-20 w-full max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            {/* LEFT SIDE - Video & Data */}
+            <div className="relative flex justify-center items-center order-1 md:order-1">
+              {/* Background glow */}
+              <div className="absolute w-110 h-110 bg-yellow-500/20 blur-3xl rounded-full"></div>
+
+              {/* Video Player with solid background */}
+              <div className="relative z-10 w-full max-w-md rounded-2xl overflow-hidden shadow-2xl bg-black border-2 border-yellow-500/30">
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="w-full h-64 object-cover"
+                >
+                  <source src={rotatesun} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+
+            {/* RIGHT SIDE - Text Content */}
+            <div className="text-gray-200 space-y-5 order-2 md:order-2">
+              <h2 className="text-3xl font-bold text-yellow-400 tracking-widest uppercase">
+                Relative to the Earth
+              </h2>
+              <p className="text-lg leading-relaxed">
+                According to the spectral classification, the Sun belongs to the 
+                <span className="text-yellow-400 font-semibold"> G2V type (yellow dwarf)</span>.
+              </p>
+              <p className="text-lg leading-relaxed">
+                The average density of the Sun is 
+                <span className="text-yellow-400 font-semibold"> 1.4 g/cm³</span>, which is about 1.4 times that of water.
+              </p>
+              <p className="text-lg leading-relaxed">
+                The effective surface temperature of the Sun is approximately 
+                <span className="text-yellow-400 font-semibold"> 5780 Kelvin</span>, radiating immense energy that sustains life on Earth.
+              </p>
+
+              {/* Small icons info */}
+              <div className="grid grid-cols-2 gap-4 pt-6 text-sm text-gray-300">
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-orange-400/10 transition-all duration-300 border border-white/10">
+                  <span className="text-yellow-400 text-2xl">🌘</span>
+                  <div>
+                    <h3 className="text-yellow-400 font-semibold">Eclipses</h3>
+                    <p className="leading-tight text-xs">Visible from Earth</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-orange-400/10 transition-all duration-300 border border-white/10">
+                  <span className="text-yellow-400 text-2xl">🌐</span>
+                  <div>
+                    <h3 className="text-yellow-400 font-semibold">Solar System</h3>
+                    <p className="leading-tight text-xs">Part of cosmic web</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-orange-400/10 transition-all duration-300 border border-white/10">
+                  <span className="text-yellow-400 text-2xl">🛰️</span>
+                  <div>
+                    <h3 className="text-yellow-400 font-semibold">Satellites</h3>
+                    <p className="leading-tight text-xs">Orbit and study the Sun</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 rounded-xl bg-white/5 hover:bg-orange-400/10 transition-all duration-300 border border-white/10">
+                  <span className="text-yellow-400 text-2xl">⚡</span>
+                  <div>
+                    <h3 className="text-yellow-400 font-semibold">Energy Source</h3>
+                    <p className="leading-tight text-xs">Powers life and industry</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* Quiz Section */}
-          <div className="mt-12 text-center">
+          <div className="mt-12 text-center mb-16">
             <button
-              className="bg-yellow-500 px-6 py-2 rounded font-bold text-black hover:bg-yellow-600"
+              className="bg-yellow-500 px-8 py-3 rounded-lg font-bold text-black hover:bg-yellow-600 transition-all duration-300 text-lg shadow-lg hover:shadow-xl"
               onClick={() => {
                 setShowQuiz(true);
                 setCurrentQuestion(0);
@@ -422,25 +338,25 @@ export default function SunPage() {
           {/* Quiz Modal */}
           {showQuiz && (
             <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-              <div className="bg-gray-900 text-white rounded-xl p-6 w-full max-w-md relative">
+              <div className="bg-gray-900 text-white rounded-xl p-6 w-full max-w-md relative border border-yellow-500/30">
                 <button
-                  className="absolute top-2 right-2 text-gray-400 hover:text-white"
+                  className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl"
                   onClick={() => setShowQuiz(false)}
                 >
                   ✖
                 </button>
-                <h2 className="text-xl font-bold mb-4">Quiz Time!</h2>
-                <p className="text-lg mb-4">{sunQuizQuestions[currentQuestion].question}</p>
-                <div className="grid grid-cols-1 gap-4">
+                <h2 className="text-2xl font-bold mb-4 text-yellow-400">Quiz Time!</h2>
+                <p className="text-lg mb-6 bg-white/10 p-4 rounded-lg">{sunQuizQuestions[currentQuestion].question}</p>
+                <div className="grid grid-cols-1 gap-3">
                   {sunQuizQuestions[currentQuestion].options.map((option, idx) => (
                     <button
                       key={idx}
-                      className={`px-4 py-2 rounded ${
+                      className={`px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
                         selectedAnswer === option
                           ? option === sunQuizQuestions[currentQuestion].correct
-                            ? "bg-green-500 border-4 border-green-700"
-                            : "bg-red-500 border-4 border-red-700"
-                          : "bg-yellow-500 hover:bg-yellow-600 text-black"
+                            ? "bg-green-600 border-2 border-green-400 text-white"
+                            : "bg-red-600 border-2 border-red-400 text-white"
+                          : "bg-yellow-500 hover:bg-yellow-600 text-black border-2 border-yellow-600"
                       }`}
                       onClick={() => handleAnswer(option)}
                     >
@@ -455,13 +371,13 @@ export default function SunPage() {
           {/* Badge and Score Modals */}
           {showBadge && (
             <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-              <div className="bg-gray-900 text-white rounded-xl p-6 w-full max-w-md text-center">
-                <h2 className="text-xl font-bold mb-4">🎉 Congratulations!</h2>
-                <p className="text-lg mb-4">
+              <div className="bg-gray-900 text-white rounded-xl p-8 w-full max-w-md text-center border border-yellow-500/30">
+                <h2 className="text-2xl font-bold mb-4 text-yellow-400">🎉 Congratulations!</h2>
+                <p className="text-lg mb-6">
                   You earned a badge for scoring {score}/{sunQuizQuestions.length} correct answers!
                 </p>
                 <button
-                  className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600"
+                  className="bg-green-500 px-6 py-2 rounded font-bold text-white hover:bg-green-600 transition-all duration-300"
                   onClick={() => setShowBadge(false)}
                 >
                   Close
@@ -472,11 +388,11 @@ export default function SunPage() {
 
           {showScore && (
             <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-              <div className="bg-gray-900 text-white rounded-xl p-6 w-full max-w-md text-center">
-                <h2 className="text-xl font-bold mb-4">Your Score: {score}/{sunQuizQuestions.length}</h2>
-                <p className="text-lg mb-4">Try again next time to earn the badge!</p>
+              <div className="bg-gray-900 text-white rounded-xl p-8 w-full max-w-md text-center border border-yellow-500/30">
+                <h2 className="text-2xl font-bold mb-4">Your Score: {score}/{sunQuizQuestions.length}</h2>
+                <p className="text-lg mb-6">Try again next time to earn the badge!</p>
                 <button
-                  className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600"
+                  className="bg-blue-500 px-6 py-2 rounded font-bold text-white hover:bg-blue-600 transition-all duration-300"
                   onClick={() => setShowScore(false)}
                 >
                   Close

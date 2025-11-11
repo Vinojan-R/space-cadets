@@ -169,7 +169,7 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             <div className="max-w-2xl">
               <h1 className="text-2xl md:text-7xl font-bold mb-6 text-white">
-                Welcome to our space cadets website 
+                Welcome to our space cadets 
               </h1>
               <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
                 Journey through the cosmos and discover the wonders of our planetary neighborhood. 
