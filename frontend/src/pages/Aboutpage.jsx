@@ -23,21 +23,21 @@ export default function Aboutpage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-15 max-w-6xl">
           {/* Box 1 */}
           <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
-            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+            <h2 className="text-2xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
               🪐 Who We Are
             </h2>
-            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
-             space cadets is a university project promoting space knowledge and
+            <p className="text-gray-200 text-base font-[Comic_Sans_MS]">
+             Space cadets is a university project promoting space knowledge and
               innovation among students and enthusiasts.
             </p>
           </div>
 
           {/* Box 2 */}
           <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
-            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+            <h2 className="text-2xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
               🎯 Aim
             </h2>
-            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+            <p className="text-gray-200 text-base font-[Comic_Sans_MS]">
               To encourage curiosity and creative learning in the field of space
               science and technology.
             </p>
@@ -45,20 +45,20 @@ export default function Aboutpage() {
 
           {/* Box 3 */}
           <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
-            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+            <h2 className="text-2xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
               🌠 Mission
             </h2>
-            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+            <p className="text-gray-200 text-base font-[Comic_Sans_MS]">
              Our mission is to make space education fun and easy for space cadets through creative and engaging learning.
             </p>
           </div>
 
           {/* Box 4 */}
           <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
-            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+            <h2 className="text-2xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
               🚀 Vision
             </h2>
-            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+            <p className="text-gray-200 text-base font-[Comic_Sans_MS]">
               Inspire students to explore and innovate in space science for a
               sustainable future.
             </p>
@@ -66,20 +66,21 @@ export default function Aboutpage() {
 
           {/* Box 5 */}
           <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
-            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+            <h2 className="text-2xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
               👩‍🚀 Our Team
             </h2>
-            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
-             • Fathima nuha • Naja naffer • Vinojan • Pathushan • Josiya
+            <p className="text-gray-200 text-base font-[Comic_Sans_MS]">
+             • Fathima Nuha • Fathima Naja • Vinojan 
+             • Pathushan • Josiya
             </p>
           </div>
 
           {/* Box 6 */}
           <div className="bg-white/10 p-4 rounded-2xl backdrop-blur-md border border-white/20">
-            <h2 className="text-xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
+            <h2 className="text-2xl font-bold text-blue-300 font-[Comic_Sans_MS] mb-2">
               📬 Contact Us
             </h2>
-            <p className="text-gray-200 text-sm font-[Comic_Sans_MS]">
+            <p className="text-gray-200 text-base font-[Comic_Sans_MS]">
               📧 spacekitsuniversity@gmail.com <br />
               🌐 www.spacekitsuniversity.com <br />
               📍 Rajarata University of Sri Lanka
