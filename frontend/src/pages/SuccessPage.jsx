@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
+
 export default function SuccessPage() {
   const navigate = useNavigate();
+
+  
 
   return (
     <div className="flex items-center justify-center h-screen bg-black text-white">

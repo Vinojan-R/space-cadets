@@ -186,33 +186,41 @@ export default function DashBoard() {
       {/* Centered modal as a portal with single close button */}
       {showModal &&
         createPortal(
-          <div className="fixed inset-0 z-50 flex items-center justify-center">
-            {/* overlay - clicking outside closes */}
-            <div className="absolute inset-0 bg-black/60" onClick={() => { setShowModal(false); setMsg(""); }} />
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-[20000] flex items-center justify-center px-4 py-8"
+          >
+            {/* semi-opaque overlay */}
+            <div
+              className="absolute inset-0 bg-black/60"
+              onClick={() => { setShowModal(false); setMsg(""); }}
+            />
 
-            {/* centered panel */}
-            <div className="relative w-full max-w-4xl mx-4">
-              <div className="relative bg-gradient-to-b from-slate-800 to-gray-900 text-white rounded-2xl shadow-2xl p-8">
-                {/* single close button in corner */}
+            {/* centered modal panel */}
+            <div className="relative w-full max-w-3xl mx-auto">
+              <div className="relative bg-gradient-to-b from-slate-800 to-gray-900 text-white rounded-2xl shadow-2xl p-6 sm:p-8">
+                {/* single close button (corner) */}
                 <button
-                  aria-label="Close"
+                  type="button"
+                  aria-label="Close modal"
                   onClick={() => { setShowModal(false); setMsg(""); }}
-                  className="absolute right-4 top-4 text-2xl text-white/70 hover:text-white"
+                  className="absolute right-3 top-3 z-50 w-9 h-9 flex items-center justify-center rounded-full bg-white/6 hover:bg-white/12 text-white"
                 >
                   ✖
                 </button>
 
-                <div className="max-w-3xl mx-auto text-center">
-                  <h2 className="text-4xl font-extrabold mb-4">Daily Streak & Leaderboard</h2>
-                  <p className="text-gray-300 mb-6">Claim daily to keep your streak and earn XP.</p>
+                <div className="text-center">
+                  <h2 className="text-3xl sm:text-4xl font-extrabold mb-3">Daily Streak & Leaderboard</h2>
+                  <p className="text-sm text-gray-300 mb-5">Claim daily to keep your streak and earn XP.</p>
 
-                  {/* Claim/leaderboard area */}
-                  <div className="bg-gray-800 rounded-xl p-6 flex items-center justify-between gap-4">
+                  {/* Claim / leaderboard (kept same structure) */}
+                  <div className="bg-gray-800 rounded-xl p-4 sm:p-6 flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-full bg-gray-700 overflow-hidden flex items-center justify-center">
                         <img src="/src/assets/default-profile.png" alt="You" className="w-full h-full object-cover" />
                       </div>
-                      <div>
+                      <div className="text-left">
                         <div className="font-semibold">You</div>
                         <div className="text-sm text-gray-400">Claim your daily streak</div>
                       </div>
@@ -223,7 +231,7 @@ export default function DashBoard() {
                       <button
                         onClick={claimSpot}
                         disabled={loading}
-                        className="bg-green-500 disabled:opacity-60 hover:bg-green-600 px-6 py-3 rounded-full font-bold"
+                        className="bg-green-500 disabled:opacity-60 hover:bg-green-600 px-4 py-2 rounded-full font-bold"
                       >
                         {loading ? "Loading…" : "Claim today's streak"}
                       </button>
@@ -232,8 +240,8 @@ export default function DashBoard() {
 
                   {msg && <div className="mt-4 text-sm text-yellow-300">{msg}</div>}
 
-                  {/* small leaderboard preview */}
-                  <div className="mt-6 space-y-3">
+                  {/* leaderboard preview */}
+                  <div className="mt-5 space-y-3">
                     {leaderboard.map((p, idx) => (
                       <div key={p.id} className={`flex items-center justify-between bg-gray-800 p-3 rounded ${p.username === "You" ? "ring-2 ring-green-500" : ""}`}>
                         <div className="flex items-center gap-3">
@@ -250,7 +258,7 @@ export default function DashBoard() {
                     ))}
                   </div>
 
-                  <div className="mt-6 text-sm text-gray-400">
+                  <div className="mt-4 text-sm text-gray-400">
                     Last claimed: {lastClaim ? new Date(lastClaim).toLocaleString() : "Never"}
                   </div>
                 </div>

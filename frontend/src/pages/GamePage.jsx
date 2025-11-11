@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import GameModal from "../components/GameModal";
 import AstroQuiz from "../games/AstroQuiz";
 import SpaceRacer from "../games/SpaceRacer"; // Import PlanetMatch
-import GalaxyExplorer from "../games/MeteorCatch1"; // Import GalaxyExplorer
+import MeteorCatch from "../games/MeteorCatch1"; // Import GalaxyExplorer
 import RocketBuilder from "../games/RocketBuilder"; // Import RocketBuilder
-
+import PacMan from "../games/PacMan";	
 const games = [
 	{
 		name: "Astro Quiz",
@@ -18,11 +18,11 @@ const games = [
 		component: AstroQuiz,
 	},
 	{
-		name: "Galaxy Explorer",
+		name: "Pacman",
 		icon: "🌌",
-		path: "/games/meteorcatch",
+		path: "/games/pacman",
 		description: "Explore galaxies and collect stars!",
-		component: GalaxyExplorer,
+		component: PacMan,
 	},
 	{
 		name: "Space Racer 3D",
@@ -36,13 +36,13 @@ const games = [
 		icon: "☄️",
 		path: "/games/galaxyexplorer",
 		description: "Explore galaxies and collect stars!",
-		component: GalaxyExplorer,
+		component: MeteorCatch,
 	},
 	{
-		name: "Rocket Builder",
-		icon: "🚀",
+		name: "Planet Shooter",
+		icon: "🪐",
 		path: "/games/rocketbuilder",
-		description: "Build your own rocket and launch it into space!",
+		description: "Shoot planets and have fun",
 		component: RocketBuilder,
 	},
 ];
@@ -116,7 +116,7 @@ export default function GamePage() {
 			<Footer />
 			{selectedGame && (
 				<GameModal onClose={closeGame}>
-					<selectedGame.component />
+					<selectedGame.component onClose={closeGame} />
 				</GameModal>
 			)}
 			<style>

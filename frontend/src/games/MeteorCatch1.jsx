@@ -132,21 +132,8 @@ export default function MeteorCatch({ onClose }) {
   }, [score, lives, gameOver]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
-      <div className="relative bg-[#111827] p-4 rounded-2xl shadow-lg border border-slate-600">
-        {/* Close Button */}
-        <button
-          type="button"
-          aria-label="Close"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (typeof onClose === "function") onClose();
-          }}
-          className="absolute top-2 right-2 z-20 text-white bg-red-500 hover:bg-red-600 rounded-full px-2 py-1 text-xs"
-        >
-          ❌
-        </button>
-
+    <div className="relative w-auto h-full">
+      <div className="relative bg-[#111827] p-4 rounded-2xl shadow-lg ">
         <h2 className="text-white text-lg mb-2 text-center font-semibold">
           ☄️ Meteor Catch Mini-Game
         </h2>

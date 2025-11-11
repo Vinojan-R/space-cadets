@@ -6,7 +6,7 @@ import * as THREE from "three";
 function Ship({ position }) {
   const ref = useRef();
   useFrame(() => {
-    ref.current.rotation.y += 0.02;
+    if (ref.current) ref.current.rotation.y += 0.02;
   });
 
   return (
@@ -27,6 +27,7 @@ function Obstacle({ position, speed, onHit }) {
   const ref = useRef();
 
   useFrame((_, delta) => {
+    if (!ref.current) return;
     ref.current.position.z += speed * delta;
     if (ref.current.position.z > 2) {
       ref.current.position.z = -50;
@@ -58,7 +59,7 @@ function Stars() {
   );
 
   useFrame((_, delta) => {
-    ref.current.rotation.y += delta * 0.01;
+    if (ref.current) ref.current.rotation.y += delta * 0.01;
   });
 
   return (
@@ -76,10 +77,10 @@ function Stars() {
   );
 }
 
-function GameScene({ onGameOver, score, setScore, isRunning }) {
-  const shipRef = useRef({ x: 0 });
-  const [obstacles, setObstacles] = useState(
-    Array.from({ length: 15 }, () => ({
+function GameScene({ onGameOver, setScore, isRunning, shipRef }) {
+  const shipX = shipRef || useRef({ x: 0 });
+  const [obstacles] = useState(
+    Array.from({ length: 12 }, () => ({
       x: (Math.random() - 0.5) * 6,
       y: 0,
       z: -Math.random() * 50,
@@ -87,15 +88,14 @@ function GameScene({ onGameOver, score, setScore, isRunning }) {
     }))
   );
 
-  // Keyboard input
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.code === "ArrowLeft" || e.code === "KeyA") shipRef.current.x -= 0.3;
-      if (e.code === "ArrowRight" || e.code === "KeyD") shipRef.current.x += 0.3;
+      if (e.code === "ArrowLeft" || e.code === "KeyA") shipX.current.x -= 0.3;
+      if (e.code === "ArrowRight" || e.code === "KeyD") shipX.current.x += 0.3;
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [shipX]);
 
   useFrame((_, delta) => {
     if (!isRunning) return;
@@ -107,7 +107,7 @@ function GameScene({ onGameOver, score, setScore, isRunning }) {
       <ambientLight intensity={0.6} />
       <directionalLight position={[3, 3, 5]} intensity={1.2} />
       <Stars />
-      <Ship position={[shipRef.current.x, -1, 0]} />
+      <Ship position={[shipX.current.x, -1, 0]} />
       {obstacles.map((o, i) => (
         <Obstacle
           key={i}
@@ -120,7 +120,7 @@ function GameScene({ onGameOver, score, setScore, isRunning }) {
   );
 }
 
-export default function SpaceRacer3D() {
+export default function SpaceRacer({ onClose }) {
   const [score, setScore] = useState(0);
   const [isRunning, setIsRunning] = useState(true);
   const [gameOver, setGameOver] = useState(false);
@@ -137,29 +137,61 @@ export default function SpaceRacer3D() {
   };
 
   return (
-    <div className="w-full h-screen bg-black text-white flex flex-col items-center justify-center">
-      <h2 className="text-2xl font-bold mb-2">🚀 Space Racer 3D</h2>
-      <p className="text-gray-400 mb-3">Use A / D or Arrow keys to move</p>
+    <div className="w-full min-h-[60vh] bg-black text-white flex flex-col items-center justify-center p-4">
+      <div className="relative w-full max-w-[640px]">
+        {/* Close button */}
+        <button
+          type="button"
+          aria-label="Close game"
+          onClick={(e) => {
+            e.stopPropagation();
+            if (typeof onClose === "function") onClose();
+          }}
+          className="absolute right-2 top-2 z-50 bg-red-500 hover:bg-red-600 text-white rounded-full w-9 h-9 flex items-center justify-center shadow"
+        >
+          ✖
+        </button>
 
-      <div style={{ width: "800px", height: "600px", borderRadius: "10px", overflow: "hidden" }}>
-        <Canvas camera={{ position: [0, 0, 4], fov: 75 }}>
-          <GameScene onGameOver={handleGameOver} score={score} setScore={setScore} isRunning={isRunning} />
-        </Canvas>
-      </div>
+        <h2 className="text-2xl font-bold mb-2 text-center">🚀 Space Racer 3D</h2>
+        <p className="text-gray-400 mb-3 text-center">Use A / D or Arrow keys to move</p>
 
-      <div className="mt-3 text-lg">Score: {Math.floor(score)}</div>
-
-      {gameOver && (
-        <div className="mt-4 flex flex-col items-center">
-          <h3 className="text-red-400 text-xl font-bold mb-2">💥 Game Over!</h3>
-          <button
-            onClick={restartGame}
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white"
-          >
-            Restart
-          </button>
+        <div
+          className="mx-auto rounded-lg overflow-hidden shadow-lg"
+          style={{
+            width: "min(600px, 86vw)",
+            height: "min(420px, 52vh)",
+            borderRadius: 10,
+          }}
+        >
+          <Canvas camera={{ position: [0, 0, 4], fov: 75 }}>
+            <GameScene onGameOver={handleGameOver} setScore={setScore} isRunning={isRunning} />
+          </Canvas>
         </div>
-      )}
+
+        <div className="mt-3 text-lg text-center">Score: {Math.floor(score)}</div>
+
+        {gameOver && (
+          <div className="mt-4 flex flex-col items-center">
+            <h3 className="text-red-400 text-xl font-bold mb-2">💥 Game Over!</h3>
+            <div className="flex gap-3">
+              <button
+                onClick={restartGame}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-white"
+              >
+                Restart
+              </button>
+              {typeof onClose === "function" && (
+                <button
+                  onClick={() => onClose()}
+                  className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg text-white"
+                >
+                  Close
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

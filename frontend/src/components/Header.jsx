@@ -65,7 +65,7 @@ export default function Header({ onNotificationClick, activePage }) {
 
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <div className="absolute top-16 right-4 bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col gap-4 md:hidden animate-slideDown">
+        <div className="fixed top-16 right-4 bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col gap-4 md:hidden animate-slideDown z-[12000]">
           <Link to="/home" className={activePage === "home" ? "underline" : ""} onClick={() => setMenuOpen(false)}>
             Home
           </Link>

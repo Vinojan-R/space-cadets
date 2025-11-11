@@ -1,16 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 
-/**
- * VoidScrappersClone.jsx
- * Single-file simple arcade shooter inspired by "void scrappers".
- * - Canvas-based
- * - Player can move, aim with mouse, shoot bullets
- * - Enemies spawn and move downwards towards player
- * - Collisions, score, basic UI
- *
- * Drop into a Vite+React project and render <VoidScrappersClone />
- */
-
 export default function VoidScrappersClone() {
   const canvasRef = useRef(null);
   const animRef = useRef(null);
