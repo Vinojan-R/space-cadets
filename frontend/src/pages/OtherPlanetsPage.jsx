@@ -226,7 +226,7 @@ export default function OtherPlanetsPage() {
   <div className="relative z-10 max-w-4xl w-full">
     {/* Main Heading */}
     <h1 className="text-4xl md:text-6xl font-black mb-8 text-white leading-tight">
-      SOLAR SYSTEM<br />EXPLORATION
+      PLANETS<br />EXPLORATION
     </h1>
 
 

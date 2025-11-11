@@ -6,6 +6,8 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import leaderboardRoutes from "./routes/leaderboardRoutes.js";
+import searchRoutes from "./routes/searchRoutes.js";
+import streakRoutes from "./routes/streaks.js";
 
 // Load environment variables
 dotenv.config();
@@ -24,6 +26,8 @@ app.use(express.json()); // allows JSON data from frontend
 // ✅ API Routes
 app.use("/api/auth", authRoutes);          // handles login, register, etc.
 app.use("/api/leaderboard", leaderboardRoutes); // handles leaderboard data
+app.use("/api/search", searchRoutes);
+app.use("/api/streaks", streakRoutes);
 
 // ✅ Health check route (for testing)
 app.get("/", (req, res) => {
@@ -45,7 +49,3 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
 });
-
-
-import searchRoutes from "./routes/searchRoutes.js";
-app.use("/api/search", searchRoutes);
