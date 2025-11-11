@@ -10,10 +10,12 @@ const SALT_ROUNDS = 10;
 // Register
 router.post("/register", async (req, res) => {
   try {
+    console.log("Register request body:", req.body);
     const { firstName, lastName, username, password } = req.body;
     if (!firstName || !lastName || !username || !password) {
       return res.status(400).json({ message: "Missing fields" });
     }
+    console.log("Registering user:", username);
 
     const exists = await User.findOne({ username });
     if (exists) return res.status(400).json({ message: "Username taken" });
@@ -28,7 +30,7 @@ router.post("/register", async (req, res) => {
       { expiresIn: "7d" }
     );
 
-    res.json({
+    res.status(201).json({
       token,
       user: {
         id: user._id,
