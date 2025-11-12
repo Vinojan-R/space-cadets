@@ -89,7 +89,7 @@ export default function RegisterPage() {
         navigate("/success");
       }
     } catch (err) {
-      setError("❌ Registration  sunnn failed. Please try again.");
+      setError("❌ Registration  failed. Please try again.");
       console.log(err)
     }
   };

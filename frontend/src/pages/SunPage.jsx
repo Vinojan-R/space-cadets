@@ -126,7 +126,7 @@ export default function SunPage() {
             </div>
           </section>
 
-          {/* --- Info Section: Like the screenshot --- */}
+          {/* --- Info Section */}
           <section className="relative z-10 py-16 w-full max-w-6xl mx-auto px-6">
             {/* Header icons */}
             <div className="flex flex-wrap justify-center gap-8 mb-10 text-sm text-gray-300">
