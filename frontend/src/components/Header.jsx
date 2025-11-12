@@ -1,6 +1,7 @@
 // src/components/Header.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { createPortal } from "react-dom";
 import logo from "../assets/logo.png";
 import AccountModal from "./AccountModal";
 
@@ -47,47 +48,49 @@ export default function Header({ onNotificationClick, activePage }) {
 
       {/* Desktop Nav */}
       <nav className="hidden md:flex gap-6">
-        <Link to="/home" className={activePage === "home" ? "underline" : ""}>
+        <NavLink to="/home" className={({ isActive }) => (isActive ? "underline" : "")}>
           Home
-        </Link>
-        <Link to="/about" className={activePage === "about" ? "underline" : ""}>
+        </NavLink>
+        <NavLink to="/about" className={({ isActive }) => (isActive ? "underline" : "")}>
           About Us
-        </Link>
-        <Link to="/videos" className={activePage === "videos" ? "underline" : ""}>
+        </NavLink>
+        <NavLink to="/videos" className={({ isActive }) => (isActive ? "underline" : "")}>
           Videos
-        </Link>
-        <Link to="/games" className={activePage === "games" ? "underline" : ""}>
+        </NavLink>
+        <NavLink to="/games" className={({ isActive }) => (isActive ? "underline" : "")}>
           Games
-        </Link>
+        </NavLink>
         <button onClick={() => setShowAccountModal(true)}>⚙️ My Account</button>
         <button onClick={onNotificationClick}>🔔</button>
       </nav>
 
-      {/* Mobile Dropdown Menu */}
-      {menuOpen && (
-        <div className="fixed top-16 right-4 bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col gap-4 md:hidden animate-slideDown z-[12000]">
-          <Link to="/home" className={activePage === "home" ? "underline" : ""} onClick={() => setMenuOpen(false)}>
-            Home
-          </Link>
-          <Link to="/about" className={activePage === "about" ? "underline" : ""} onClick={() => setMenuOpen(false)}>
-            About Us
-          </Link>
-          <Link to="/videos" className={activePage === "videos" ? "underline" : ""} onClick={() => setMenuOpen(false)}>
-            Videos
-          </Link>
-          <Link to="/games" className={activePage === "games" ? "underline" : ""} onClick={() => setMenuOpen(false)}>
-            Games
-          </Link>
-          <button
-            onClick={() => {
-              setMenuOpen(false);
-              setShowAccountModal(true);
-            }}
-          >
-            ⚙️ My Account
-          </button>
-        </div>
-      )}
+      {/* Mobile Dropdown Menu (rendered in a portal to ensure it sits above everything) */}
+      {menuOpen &&
+        createPortal(
+          <div className="fixed top-16 right-4 bg-gray-800 rounded-lg shadow-lg p-4 flex flex-col gap-4 md:hidden animate-slideDown z-[99999]">
+            <NavLink to="/home" className={({ isActive }) => (isActive ? "underline" : "")} onClick={() => setMenuOpen(false)}>
+              Home
+            </NavLink>
+            <NavLink to="/about" className={({ isActive }) => (isActive ? "underline" : "")} onClick={() => setMenuOpen(false)}>
+              About Us
+            </NavLink>
+            <NavLink to="/videos" className={({ isActive }) => (isActive ? "underline" : "")} onClick={() => setMenuOpen(false)}>
+              Videos
+            </NavLink>
+            <NavLink to="/games" className={({ isActive }) => (isActive ? "underline" : "")} onClick={() => setMenuOpen(false)}>
+              Games
+            </NavLink>
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                setShowAccountModal(true);
+              }}
+            >
+              ⚙️ My Account
+            </button>
+          </div>,
+          document.body
+        )}
 
       {/* Account Modal */}
       {showAccountModal && (
