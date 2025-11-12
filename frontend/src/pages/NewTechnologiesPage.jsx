@@ -224,7 +224,7 @@ export default function NewTechnologiesPage() {
     Discover the latest innovations in space travel, satellites, AI robotics, and futuristic exploration.
   </p>
 
-  {/* Inline Animation Styles */}
+ 
   <style jsx>{`
     /* Glow effect for title */
     @keyframes glow {
